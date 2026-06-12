@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.157.0/build/three.module.js" } }
+</script>
 <style>
 :root {
   --bg: #ffffff;
@@ -76,6 +79,12 @@ nav a {
 nav a:hover { color: var(--text); }
 
 /* ── Hero ── */
+.hero-section { position: relative; overflow: hidden; }
+#hero-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+.hero-section .wrap { position: relative; z-index: 1; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.4rem 1rem;
@@ -206,7 +215,8 @@ footer {
 </nav>
 
 <!-- ═══════════ HERO ═══════════ -->
-<section id="home">
+<section id="home" class="hero-section">
+  <canvas id="hero-canvas"></canvas>
   <div class="wrap">
     <div class="hero-badge"><span class="dot"></span>Available for engagements</div>
     <h1 class="h1">Shaheer<br>Khalid</h1>
@@ -401,6 +411,117 @@ footer {
 </section>
 
 <footer>Shaheer Khalid &nbsp;·&nbsp; Offensive Security &nbsp;·&nbsp; OSCP+ · CRTP · CEH</footer>
+
+<!-- 3D Hero Scene -->
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('hero-canvas');
+const section = canvas.parentElement;
+
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 2, 0.1, 100);
+camera.position.set(0, 0, 8);
+
+// ── Lighting ──
+scene.add(new THREE.AmbientLight(0x2e54ff, 0.15));
+const light = new THREE.DirectionalLight(0x2e54ff, 0.6);
+light.position.set(5, 5, 5);
+scene.add(light);
+const light2 = new THREE.DirectionalLight(0x8b98ff, 0.3);
+light2.position.set(-3, -2, -3);
+scene.add(light2);
+
+// ── Wireframe Icosahedron (security node mesh) ──
+const icoGeo = new THREE.IcosahedronGeometry(1.6, 1);
+const icoMat = new THREE.MeshBasicMaterial({
+  color: 0x2e54ff,
+  wireframe: true,
+  transparent: true,
+  opacity: 0.13,
+});
+const ico = new THREE.Mesh(icoGeo, icoMat);
+scene.add(ico);
+
+// Outer ring
+const ringGeo = new THREE.TorusGeometry(2.1, 0.015, 16, 80);
+const ringMat = new THREE.MeshBasicMaterial({ color: 0x2e54ff, transparent: true, opacity: 0.08 });
+const ring = new THREE.Mesh(ringGeo, ringMat);
+ring.rotation.x = Math.PI / 2;
+scene.add(ring);
+
+const ring2 = new THREE.Mesh(ringGeo.clone(), ringMat.clone());
+ring2.rotation.x = Math.PI / 3;
+ring2.rotation.y = Math.PI / 4;
+scene.add(ring2);
+
+// ── Floating particles ──
+const particlesGeo = new THREE.BufferGeometry();
+const count = 200;
+const positions = new Float32Array(count * 3);
+for (let i = 0; i < count * 3; i += 3) {
+  positions[i]     = (Math.random() - 0.5) * 10;
+  positions[i + 1] = (Math.random() - 0.5) * 8;
+  positions[i + 2] = (Math.random() - 0.5) * 6;
+}
+particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+const particlesMat = new THREE.PointsMaterial({
+  color: 0x2e54ff,
+  size: 0.025,
+  transparent: true,
+  opacity: 0.5,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+});
+const particles = new THREE.Points(particlesGeo, particlesMat);
+scene.add(particles);
+
+// ── Mouse interaction ──
+const mouse = { x: 0, y: 0 };
+let targetX = 0, targetY = 0;
+
+window.addEventListener('mousemove', (e) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
+// ── Resize ──
+function resize() {
+  const w = section.clientWidth;
+  const h = section.clientHeight;
+  renderer.setSize(w, h);
+  camera.aspect = w / Math.max(h, 1);
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+resize();
+
+// ── Render loop ──
+function animate(t) {
+  requestAnimationFrame(animate);
+
+  targetX += (mouse.x - targetX) * 0.03;
+  targetY += (mouse.y - targetY) * 0.03;
+
+  ico.rotation.x += 0.002;
+  ico.rotation.y += 0.003;
+  ico.position.x += (targetX * 0.4 - ico.position.x) * 0.02;
+  ico.position.y += (targetY * 0.3 - ico.position.y) * 0.02;
+
+  ring.rotation.z += 0.001;
+  ring2.rotation.z -= 0.0008;
+  ring2.rotation.x += 0.001;
+
+  particles.rotation.y += 0.0003;
+  particles.rotation.x += 0.0002;
+
+  renderer.render(scene, camera);
+}
+animate(0);
+</script>
 
 <!-- Cal floating-popup embed -->
 <script type="text/javascript">
