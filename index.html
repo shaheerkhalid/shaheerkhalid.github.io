@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shaheer Khalid · Offensive Security Professional</title>
-<meta name="description" content="Offensive security professional — pentesting, red teaming, and adversary simulation across web, mobile, cloud, and enterprise environments.">
+<meta name="description" content="Penetration testing, vulnerability assessment, red teaming — OSCP+, CRTP. Based in UAE.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -24,7 +24,6 @@
   --green: #34c759;
   --green-soft: rgba(52,199,89,0.10);
   --red: #ff453a;
-  --red-soft: rgba(255,69,58,0.08);
   --orange: #ff9f0a;
   --radius: 18px;
   --radius-sm: 12px;
@@ -154,6 +153,14 @@ nav a:hover, nav a.active { color: var(--text); }
 }
 .pill:hover { border-color: var(--accent); color: var(--text); }
 
+/* ── Sectors ── */
+.sector-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.sector {
+  padding: 0.5rem 1.1rem; border-radius: var(--radius-sm);
+  font-size: 0.82rem; font-weight: 500; color: var(--text-secondary);
+  background: var(--surface); border: 1px solid var(--border);
+}
+
 /* ── Contact ── */
 .contact-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
 .contact-link {
@@ -204,15 +211,15 @@ footer {
     <div class="hero-badge"><span class="dot"></span>Available for engagements</div>
     <h1 class="h1">Shaheer Khalid</h1>
     <p class="body" style="margin-top:1.25rem;font-size:1.1rem;">
-      Offensive security professional. Pentesting, red teaming, and adversary simulation across web, mobile, cloud, and enterprise environments.
+      Cybersecurity professional with 6+ years of experience in penetration testing, vulnerability assessment, and information security across web, mobile, network, and cloud environments.
     </p>
     <div class="hero-terminal">
       <span class="cmd">$</span> <span class="path">./enumerate.sh</span> —target <span class="output">enterprise</span><br>
-      <span class="output">├─ Web Apps</span> &nbsp; <span class="cmd">OWASP Top 10 · API · GraphQL</span><br>
-      <span class="output">├─ Mobile</span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">Android/iOS · Frida · Reverse Engineering</span><br>
-      <span class="output">├─ Active Directory</span> &nbsp; <span class="cmd">BloodHound · Kerberoast · DCSync</span><br>
-      <span class="output">├─ Cloud</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">AWS · Azure · GCP · IAM</span><br>
-      <span class="output">└─ Red Team</span> &nbsp; <span class="cmd">C2 · Phishing · EDR Evasion</span><br>
+      <span class="output">├─ Web Apps</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">OWASP Top 10 · API · SAST · DAST</span><br>
+      <span class="output">├─ Mobile</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">Android/iOS · Frida · Reverse Engineering</span><br>
+      <span class="output">├─ AD / Internal</span> &nbsp; <span class="cmd">BloodHound · Kerberoast · DCSync</span><br>
+      <span class="output">├─ Cloud</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">AWS · Configuration Assessments</span><br>
+      <span class="output">└─ Red Team</span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">Purple Team · OSINT · CTF</span><br>
       <span class="cmd">$</span> <span class="cursor">▊</span>
     </div>
   </div>
@@ -225,22 +232,28 @@ footer {
     <h2 class="h2">Where I've operated.</h2>
     <div class="tl">
       <div class="tl-item">
-        <div class="tl-date">2023 – Present</div>
-        <div class="tl-role">Information Security Analyst</div>
-        <div class="tl-company">ADNOC Group, Abu Dhabi · FMS-Tech</div>
-        <div class="tl-desc">Vulnerability assessments, penetration testing, and SOC operations across the UAE's largest energy infrastructure. OT/ICS security assessments, SCADA hardening, and incident response for critical national infrastructure.</div>
+        <div class="tl-date">May 2025 – Present</div>
+        <div class="tl-role">Penetration Tester · Security Consultant</div>
+        <div class="tl-company">Malcrove EMEA Technology L.L.C., Dubai</div>
+        <div class="tl-desc">Lead penetration testing engagements across web, mobile, and infrastructure. Establish scope, plan and coordinate vulnerability assessments, identify complex vulnerabilities through chained attack flows, and deliver comprehensive reports for both technical and executive audiences. Contribute to internal R&D of proprietary tools, scripts, and training materials.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date">2022 – 2023</div>
-        <div class="tl-role">Senior Penetration Tester</div>
-        <div class="tl-company">eHunar, Islamabad</div>
-        <div class="tl-desc">Led offensive security engagements for banking, fintech, and government clients. Specialised in web application pentesting, mobile security assessments, and API security reviews.</div>
+        <div class="tl-date">Nov 2022 – Aug 2024</div>
+        <div class="tl-role">Cyber Security Analyst · Security Engineer</div>
+        <div class="tl-company">B&S World Supply, Dubai</div>
+        <div class="tl-desc">Conducted security tests on internal and external systems, networks, and applications. Developed and enforced policies aligned with NIST, PCI DSS, and ISO 27001. Researched and documented vulnerabilities with remediation guidance. Minimised downtime and ensured business continuity. Collaborated with IT Risk Analysts, Threat Analysts, and Security Officers.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date">2021 – 2022</div>
-        <div class="tl-role">Security Consultant</div>
-        <div class="tl-company">Trillium Information Security, Islamabad</div>
-        <div class="tl-desc">Red team exercises, cloud security assessments, IoT penetration testing, and security architecture reviews for enterprise clients.</div>
+        <div class="tl-date">Nov 2021 – Sep 2022</div>
+        <div class="tl-role">Security Engineer · Penetration Tester</div>
+        <div class="tl-company">NPCC, Abu Dhabi</div>
+        <div class="tl-desc">Penetration tested web applications, mobile applications, and thick clients. Performed OSINT at an organisational level. Collaborated with developers to remediate vulnerabilities. Participated in purple team exercises. Ran vulnerability management programs including prioritisation.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Aug 2020 – Oct 2021</div>
+        <div class="tl-role">Security Engineer · Penetration Tester</div>
+        <div class="tl-company">VaporVM, Lahore, Pakistan</div>
+        <div class="tl-desc">Performed host, network, web, and mobile application penetration tests based on OWASP Top 10. Conducted risk assessments for corporate compliance. Configured custom penetration testing tools and scenarios. Participated in CTF competitions.</div>
       </div>
     </div>
   </div>
@@ -254,46 +267,61 @@ footer {
     <div class="grid">
       <div class="card">
         <div class="card-icon">🌐</div>
-        <h3>Web Application Security</h3>
-        <p>OWASP Top 10, API pentesting, Burp Suite Pro, SQL injection, XSS, SSRF, IDOR, JWT attacks, GraphQL, WebSockets.</p>
-        <div class="card-tags"><span class="tag accent">Burp Suite</span><span class="tag">OWASP ZAP</span><span class="tag">SQLMap</span></div>
+        <h3>Web Application Pentesting</h3>
+        <p>OWASP Top 10, API security, SAST and DAST, manual testing, SQLMap, BurpSuite Pro, Acunetix, Nikto, AppScan, Shodan, source code static analysis.</p>
+        <div class="card-tags"><span class="tag accent">BurpSuite</span><span class="tag">SQLMap</span><span class="tag">Acunetix</span></div>
       </div>
       <div class="card">
         <div class="card-icon">📱</div>
-        <h3>Mobile Security</h3>
-        <p>Android & iOS application pentesting. Reverse engineering with jadx, Frida hooking, Objection runtime manipulation, SSL pinning bypass, MobSF static analysis.</p>
-        <div class="card-tags"><span class="tag accent">Frida</span><span class="tag">MobSF</span><span class="tag">Objection</span></div>
+        <h3>Mobile App Pentesting</h3>
+        <p>Android and iOS application security. Frida runtime instrumentation, Logcat analysis, Drozer, ADB, apktool, jadx reverse engineering, SSL pinning bypass.</p>
+        <div class="card-tags"><span class="tag accent">Frida</span><span class="tag">jadx</span><span class="tag">apktool</span></div>
       </div>
       <div class="card">
         <div class="card-icon">🏢</div>
-        <h3>Active Directory & Internal</h3>
-        <p>AD enumeration, Kerberoasting, AS-REP roasting, DCSync, BloodHound path analysis, lateral movement, privilege escalation, C2 frameworks.</p>
-        <div class="card-tags"><span class="tag accent">BloodHound</span><span class="tag">Impacket</span><span class="tag">Mimikatz</span></div>
+        <h3>Active Directory Pentesting</h3>
+        <p>CrackMapExec, Impacket, BloodHound, PowerView, Powersploit, Mimikatz, PowerUpSQL, UACme, Metasploit. Lateral movement, privilege escalation, persistence.</p>
+        <div class="card-tags"><span class="tag accent">BloodHound</span><span class="tag">Mimikatz</span><span class="tag">Impacket</span></div>
       </div>
       <div class="card">
         <div class="card-icon">☁️</div>
         <h3>Cloud Security</h3>
-        <p>AWS, Azure, and GCP security assessments. IAM privilege escalation, serverless attacks, storage misconfigurations, cloud-native persistence.</p>
-        <div class="card-tags"><span class="tag accent">AWS</span><span class="tag">Azure</span><span class="tag">ScoutSuite</span></div>
+        <p>AWS cloud penetration testing and configuration assessments. Identifying misconfigurations, IAM privilege paths, storage exposure, and cloud-native attack surfaces.</p>
+        <div class="card-tags"><span class="tag accent">AWS</span><span class="tag">IAM</span><span class="tag">S3</span></div>
       </div>
       <div class="card">
         <div class="card-icon">🔌</div>
-        <h3>Network & Infrastructure</h3>
-        <p>External and internal network pentesting. Nmap, Nessus, Metasploit, VLAN hopping, NAC bypass, MITM attacks, wireless assessments.</p>
+        <h3>Network Security VA/PT</h3>
+        <p>NMAP, Nessus, Metasploit, Hashcat, Aircrack-ng, Netcat, Ligolo. Internal and external network assessments, wireless security testing.</p>
         <div class="card-tags"><span class="tag accent">Nmap</span><span class="tag">Nessus</span><span class="tag">Metasploit</span></div>
       </div>
       <div class="card">
         <div class="card-icon">🔴</div>
-        <h3>Red Teaming</h3>
-        <p>Full-scope adversary simulation. Phishing campaigns, C2 infrastructure, EDR/AV evasion, custom payload development, physical social engineering.</p>
-        <div class="card-tags"><span class="tag accent">Cobalt Strike</span><span class="tag">Sliver</span><span class="tag">Custom C2</span></div>
+        <h3>Purple Team &amp; Compliance</h3>
+        <p>Purple team exercises, detection and response evaluation. NIST, PCI DSS, and ISO 27001 compliance. Security policy and procedure development.</p>
+        <div class="card-tags"><span class="tag accent">NIST</span><span class="tag">PCI DSS</span><span class="tag">ISO 27001</span></div>
       </div>
     </div>
     <div class="skills-row">
       <span class="pill">Python</span><span class="pill">Bash</span><span class="pill">PowerShell</span>
-      <span class="pill">Kali Linux</span><span class="pill">Parrot OS</span><span class="pill">Docker</span>
-      <span class="pill">Wireshark</span><span class="pill">Splunk</span><span class="pill">ELK</span>
-      <span class="pill">CI/CD Security</span><span class="pill">DevSecOps</span>
+      <span class="pill">Kali Linux</span><span class="pill">Docker</span><span class="pill">CTF</span>
+      <span class="pill">Wireshark</span><span class="pill">OSINT</span><span class="pill">Purple Team</span>
+      <span class="pill">Red Teaming</span><span class="pill">DevSecOps</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section style="padding-top:2rem;">
+  <div class="wrap">
+    <p class="kicker">Engagements</p>
+    <h2 class="h2">Sectors I've worked in.</h2>
+    <div class="sector-list">
+      <div class="sector">🏦 Financial · Pakistan &amp; Middle East</div>
+      <div class="sector">🏥 Health · Pakistan &amp; Middle East</div>
+      <div class="sector">⛽ Oil &amp; Gas · Pakistan &amp; Middle East</div>
+      <div class="sector">🏭 Industrial Manufacturing · USA, Canada &amp; Middle East</div>
+      <div class="sector">🛒 E-Commerce · Pakistan &amp; Middle East</div>
     </div>
   </div>
 </section>
@@ -306,33 +334,49 @@ footer {
     <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
       <div class="card">
         <div class="card-icon">🎯</div>
-        <h3>OSCP</h3>
-        <p>Offensive Security Certified Professional. 24-hour hands-on penetration testing examination.</p>
+        <h3>OSCP+</h3>
+        <p>Offensive Security Certified Professional (plus). Advanced hands-on penetration testing certification with AD attack specialisation. 24-hour practical exam.</p>
       </div>
       <div class="card">
         <div class="card-icon">⚔️</div>
-        <h3>OSCP+</h3>
-        <p>Advanced credential with Active Directory attack specialisation and client-side exploitation.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏰</div>
         <h3>CRTP</h3>
-        <p>Certified Red Team Professional. AD attack paths, trust abuse, and defence evasion techniques.</p>
+        <p>Certified Red Team Professional. Active Directory attack paths, trust abuse, lateral movement, and defence evasion. Hands-on red team lab.</p>
       </div>
       <div class="card">
         <div class="card-icon">🛡️</div>
         <h3>CEH</h3>
-        <p>Certified Ethical Hacker. EC-Council. Foundational offensive security methodology.</p>
+        <p>Certified Ethical Hacker (EC-Council). Foundational methodology across all major offensive security domains.</p>
       </div>
       <div class="card">
         <div class="card-icon">📋</div>
         <h3>CAP</h3>
-        <p>Certified AppSec Practitioner. Web application and API security assessment specialisation.</p>
+        <p>Certified AppSec Practitioner. Web application and API security assessment with a practical, hands-on approach.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🔷</div>
-        <h3>CCSK</h3>
-        <p>Certificate of Cloud Security Knowledge. Cloud security architecture and governance fundamentals.</p>
+        <div class="card-icon">🌐</div>
+        <h3>CNSS</h3>
+        <p>Certified Network Security Specialist. Network defence, protocols, firewall configuration, and infrastructure security.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>Practical Ethical Hacking</h3>
+        <p>TCM Security. Hands-on course covering Active Directory attacks, web app pentesting, privilege escalation, and reporting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section style="padding-top:2rem;">
+  <div class="wrap">
+    <p class="kicker">Education</p>
+    <h2 class="h2">Academic background.</h2>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-date">2016 – 2020</div>
+        <div class="tl-role">Bachelor of Science in Software Engineering</div>
+        <div class="tl-company">COMSATS University</div>
+        <div class="tl-desc">Final Project: eCom &amp; eLearning Platform — Integrated B2C e-commerce and eLearning functionalities using React, Node.js (API), and MySQL.</div>
       </div>
     </div>
   </div>
@@ -344,17 +388,26 @@ footer {
     <p class="kicker">Contact</p>
     <h2 class="h2">Get in touch.</h2>
     <div class="contact-row">
-      <a href="mailto:shaheerkhalid@proton.me" class="contact-link"><span class="icon">✉️</span> shaheerkhalid@proton.me</a>
-      <a href="tel:+971501234567" class="contact-link"><span class="icon">📱</span> +971 50 123 4567</a>
+      <a href="mailto:shaheerkhalid12@gmail.com" class="contact-link"><span class="icon">✉️</span> shaheerkhalid12@gmail.com</a>
+      <a href="tel:+971528638661" class="contact-link"><span class="icon">📱</span> +971 528 638661</a>
       <a href="https://linkedin.com/in/shaheerkhalid" target="_blank" class="contact-link"><span class="icon">💼</span> LinkedIn</a>
-      <a href="https://github.com/shaheerkhalid" target="_blank" class="contact-link"><span class="icon">🐙</span> GitHub</a>
-      <div class="contact-link"><span class="icon">📍</span> Abu Dhabi, UAE</div>
-      <a href="Shaheer_Khalid_CV.pdf" class="contact-link"><span class="icon">📄</span> Download CV</a>
+      <div class="contact-link"><span class="icon">📍</span> Dubai, UAE</div>
+      <a href="#" class="contact-link" onclick="Cal.ns['30min']('show'); return false;"><span class="icon">📅</span> Schedule a Call</a>
     </div>
   </div>
 </section>
 
-<footer>Shaheer Khalid &nbsp;·&nbsp; Offensive Security Professional &nbsp;·&nbsp; 2026</footer>
+<footer>Shaheer Khalid &nbsp;·&nbsp; Offensive Security Professional &nbsp;·&nbsp; OSCP+ · CRTP · CEH</footer>
+
+<!-- Cal floating-popup embed code -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://app.cal.com"});
+Cal.config = Cal.config || {};
+Cal.config.forwardQueryParams = true;
+Cal.ns["30min"]("floatingButton", {"calLink":"shaheer-khalid/30min","config":{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}});
+Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 
 </body>
 </html>
