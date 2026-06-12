@@ -3,195 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shaheer Khalid · Offensive Security Professional</title>
-<meta name="description" content="Penetration testing, vulnerability assessment, red teaming — OSCP+, CRTP. Based in UAE.">
+<title>Shaheer Khalid · Offensive Security</title>
+<meta name="description" content="Penetration testing, vulnerability assessment, red teaming. OSCP+, CRTP. Based in UAE.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0b;
-  --surface: #131316;
-  --surface-hover: #1a1a1e;
-  --border: #232326;
-  --border-hover: #303034;
-  --text: #f0f0f2;
-  --text-secondary: #8e8e93;
-  --text-tertiary: #636368;
-  --accent: #5b6af0;
-  --accent-soft: rgba(91,106,240,0.12);
-  --accent-text: #8b98ff;
-  --green: #34c759;
-  --green-soft: rgba(52,199,89,0.10);
-  --red: #ff453a;
-  --orange: #ff9f0a;
-  --radius: 18px;
-  --radius-sm: 12px;
-  --radius-xs: 8px;
+  --bg: #ffffff;
+  --surface: #f8f9fb;
+  --surface-hover: #f1f3f6;
+  --border: #e5e7eb;
+  --border-hover: #d1d5db;
+  --text: #0f0f0f;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --accent: #2e54ff;
+  --accent-soft: rgba(46,84,255,0.06);
+  --accent-hover: #1a3fd6;
+  --green: #059669;
+  --green-soft: rgba(5,150,105,0.06);
+  --radius: 20px;
+  --radius-sm: 14px;
+  --radius-full: 9999px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.55;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-::selection { background: var(--accent-soft); color: var(--accent-text); }
+::selection { background: var(--accent-soft); color: var(--accent); }
 
 /* ── Layout ── */
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 2rem; }
-section { padding: 6rem 0; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+section { padding: 7rem 0; }
+section:first-of-type { padding-top: 9rem; }
 
 /* ── Typography ── */
-.h1 { font-size: 3.25rem; font-weight: 900; letter-spacing: -0.035em; line-height: 1.08; }
-.h2 { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 3.5rem; }
-.h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
-.body { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; max-width: 560px; }
+.h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -0.04em; line-height: 1.05; }
+.h2 { font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 500; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 3rem; }
+.h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
+.body { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.75; max-width: 600px; }
 .mono { font-family: 'JetBrains Mono', monospace; }
 .kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem; font-weight: 500;
-  text-transform: uppercase; letter-spacing: 0.12em;
+  text-transform: uppercase; letter-spacing: 0.14em;
   color: var(--text-tertiary); margin-bottom: 0.75rem;
 }
-.kicker-accent { color: var(--accent-text); }
 
 /* ── Nav ── */
 nav {
-  position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%);
-  z-index: 100; display: flex; gap: 2.25rem;
-  padding: 0.55rem 1.75rem;
-  background: rgba(19,19,22,0.72);
-  backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-  border: 1px solid var(--border); border-radius: 100px;
+  position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
+  z-index: 100; display: flex; gap: 2.5rem;
+  padding: 0.6rem 2rem;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border); border-radius: var(--radius-full);
 }
 nav a {
   color: var(--text-secondary); text-decoration: none;
-  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.015em;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.01em;
   transition: color 0.2s;
 }
-nav a:hover, nav a.active { color: var(--text); }
+nav a:hover { color: var(--text); }
 
 /* ── Hero ── */
-.hero { padding: 9rem 0 5rem; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.35rem 0.9rem;
-  background: var(--green-soft); border: 1px solid rgba(52,199,89,0.18);
-  border-radius: 100px; font-size: 0.78rem; font-weight: 600;
+  padding: 0.4rem 1rem;
+  background: var(--green-soft); border: 1px solid rgba(5,150,105,0.15);
+  border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 500;
   color: var(--green); margin-bottom: 2.5rem;
 }
 .hero-badge .dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--green); box-shadow: 0 0 6px rgba(52,199,89,0.4);
+  background: var(--green);
 }
 .hero-terminal {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1.75rem 2rem;
-  margin-top: 2.5rem; max-width: 640px;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;
-  line-height: 2; color: var(--text-secondary);
+  background: #fafbfc; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 1.5rem 1.75rem;
+  margin-top: 3rem; max-width: 620px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+  line-height: 2.2; color: var(--text-secondary);
 }
-.hero-terminal .cmd { color: var(--green); }
-.hero-terminal .path { color: var(--accent-text); }
-.hero-terminal .output { color: var(--text); }
+.hero-terminal .cmd { color: var(--accent); }
+.hero-terminal .path { color: var(--text); font-weight: 500; }
+.hero-terminal .output { color: var(--text-secondary); }
 .hero-terminal .cursor { color: var(--accent); animation: blink 1s step-end infinite; }
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
+/* ── CTA Button ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background: var(--accent); color: #fff;
+  border-radius: var(--radius-full);
+  text-decoration: none; font-size: 0.9rem; font-weight: 500;
+  transition: background 0.2s;
+}
+.btn:hover { background: var(--accent-hover); }
+
 /* ── Cards ── */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
 .card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1.75rem;
-  transition: all 0.3s var(--ease);
+  border-radius: var(--radius); padding: 2rem;
+  transition: border-color 0.25s var(--ease);
 }
-.card:hover {
-  background: var(--surface-hover); border-color: var(--border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
-.card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-.card h3 { margin-bottom: 0.4rem; }
-.card p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.65; }
-.card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
+.card:hover { border-color: var(--accent); }
+.card-icon { font-size: 1.6rem; margin-bottom: 1.25rem; }
+.card h3 { font-weight: 600; margin-bottom: 0.5rem; font-size: 1.05rem; }
+.card p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
 .tag {
-  padding: 0.2rem 0.6rem; border-radius: 100px;
+  padding: 0.25rem 0.7rem; border-radius: var(--radius-full);
   font-size: 0.72rem; font-weight: 500;
-  background: var(--surface-hover); color: var(--text-secondary);
+  background: var(--bg); color: var(--text-secondary);
   border: 1px solid var(--border);
 }
-.tag.accent { background: var(--accent-soft); border-color: rgba(91,106,240,0.2); color: var(--accent-text); }
+.tag.accent { background: var(--accent-soft); border-color: rgba(46,84,255,0.18); color: var(--accent); }
 
 /* ── Timeline ── */
 .tl { position: relative; padding-left: 2rem; }
-.tl::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: var(--border); }
-.tl-item { position: relative; padding-bottom: 3rem; }
+.tl::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+.tl-item { position: relative; padding-bottom: 3.5rem; }
 .tl-item:last-child { padding-bottom: 0; }
 .tl-item::before {
-  content: ''; position: absolute; left: -1.7rem; top: 4px;
-  width: 11px; height: 11px; border-radius: 50%;
+  content: ''; position: absolute; left: -1.8rem; top: 4px;
+  width: 13px; height: 13px; border-radius: 50%;
   background: var(--accent); border: 3px solid var(--bg);
-  box-shadow: 0 0 0 4px var(--accent-soft);
 }
-.tl-date { font-size: 0.8rem; font-weight: 600; color: var(--accent-text); margin-bottom: 0.2rem; }
-.tl-role { font-size: 1.1rem; font-weight: 700; }
-.tl-company { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
-.tl-desc { font-size: 0.85rem; color: var(--text-tertiary); line-height: 1.7; max-width: 560px; }
+.tl-date { font-size: 0.8rem; font-weight: 500; color: var(--accent); margin-bottom: 0.25rem; }
+.tl-role { font-size: 1.1rem; font-weight: 600; }
+.tl-company { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.tl-desc { font-size: 0.88rem; color: var(--text-tertiary); line-height: 1.75; max-width: 560px; }
 
 /* ── Skills strip ── */
-.skills-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+.skills-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; }
 .pill {
-  padding: 0.45rem 1rem; border-radius: 100px;
+  padding: 0.5rem 1.1rem; border-radius: var(--radius-full);
   font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);
   background: var(--surface); border: 1px solid var(--border);
   transition: all 0.2s var(--ease); cursor: default;
 }
-.pill:hover { border-color: var(--accent); color: var(--text); }
+.pill:hover { border-color: var(--accent); color: var(--text); background: var(--bg); }
 
 /* ── Sectors ── */
-.sector-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.sector-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 .sector {
-  padding: 0.5rem 1.1rem; border-radius: var(--radius-sm);
-  font-size: 0.82rem; font-weight: 500; color: var(--text-secondary);
+  padding: 0.65rem 1.3rem; border-radius: var(--radius-full);
+  font-size: 0.84rem; font-weight: 500; color: var(--text-secondary);
   background: var(--surface); border: 1px solid var(--border);
 }
 
 /* ── Contact ── */
-.contact-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+.contact-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.75rem; }
 .contact-link {
   display: flex; align-items: center; gap: 0.85rem;
-  padding: 1rem 1.35rem; border-radius: var(--radius-sm);
+  padding: 1.1rem 1.5rem; border-radius: var(--radius-sm);
   background: var(--surface); border: 1px solid var(--border);
   text-decoration: none; color: var(--text); font-size: 0.9rem;
-  font-weight: 500; transition: all 0.25s var(--ease);
+  font-weight: 500; transition: border-color 0.2s var(--ease); cursor: pointer;
 }
-.contact-link:hover { border-color: var(--accent); background: var(--surface-hover); }
-.contact-link .icon { font-size: 1.25rem; }
+.contact-link:hover { border-color: var(--accent); }
+.contact-link .icon { font-size: 1.3rem; }
 
 /* ── Footer ── */
 footer {
   text-align: center; padding: 3rem 2rem;
-  color: var(--text-tertiary); font-size: 0.78rem;
+  color: var(--text-tertiary); font-size: 0.8rem;
   border-top: 1px solid var(--border);
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .h1 { font-size: 2.2rem; }
-  .h2 { font-size: 1.7rem; margin-bottom: 2rem; }
+  .h1 { font-size: 2.5rem; }
+  .h2 { font-size: 1.8rem; margin-bottom: 2rem; }
   .grid { grid-template-columns: 1fr; }
   nav { gap: 1.25rem; padding: 0.5rem 1.25rem; }
   .wrap { padding: 0 1.25rem; }
-  .hero-terminal { font-size: 0.75rem; padding: 1.25rem; }
-}
-@media (max-width: 480px) {
-  .h1 { font-size: 1.75rem; }
-  nav { gap: 0.9rem; font-size: 0.7rem; }
+  .hero-terminal { font-size: 0.7rem; padding: 1.25rem; }
+  .contact-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -206,27 +206,30 @@ footer {
 </nav>
 
 <!-- ═══════════ HERO ═══════════ -->
-<section class="hero" id="home">
+<section id="home">
   <div class="wrap">
     <div class="hero-badge"><span class="dot"></span>Available for engagements</div>
-    <h1 class="h1">Shaheer Khalid</h1>
-    <p class="body" style="margin-top:1.25rem;font-size:1.1rem;">
-      Cybersecurity professional with 6+ years of experience in penetration testing, vulnerability assessment, and information security across web, mobile, network, and cloud environments.
+    <h1 class="h1">Shaheer<br>Khalid</h1>
+    <p class="body" style="margin-top:1.5rem;font-size:1.15rem;">
+      Offensive security professional with 6+ years of hands-on penetration testing, vulnerability assessment, and red teaming across web, mobile, cloud, and enterprise environments.
     </p>
+    <div style="margin-top:2rem;">
+      <a href="#contact" class="btn">Get in touch</a>
+    </div>
     <div class="hero-terminal">
-      <span class="cmd">$</span> <span class="path">./enumerate.sh</span> —target <span class="output">enterprise</span><br>
+      <span class="cmd">$</span> <span class="path">./enumerate.sh</span> —target <span style="color:var(--accent);">enterprise</span><br>
       <span class="output">├─ Web Apps</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">OWASP Top 10 · API · SAST · DAST</span><br>
       <span class="output">├─ Mobile</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">Android/iOS · Frida · Reverse Engineering</span><br>
       <span class="output">├─ AD / Internal</span> &nbsp; <span class="cmd">BloodHound · Kerberoast · DCSync</span><br>
       <span class="output">├─ Cloud</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">AWS · Configuration Assessments</span><br>
-      <span class="output">└─ Red Team</span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="cmd">Purple Team · OSINT · CTF</span><br>
+      <span class="output">└─ Compliance</span> &nbsp;&nbsp; <span class="cmd">NIST · PCI DSS · ISO 27001</span><br>
       <span class="cmd">$</span> <span class="cursor">▊</span>
     </div>
   </div>
 </section>
 
 <!-- ═══════════ EXPERIENCE ═══════════ -->
-<section id="experience">
+<section id="experience" style="background:var(--surface);">
   <div class="wrap">
     <p class="kicker">Experience</p>
     <h2 class="h2">Where I've operated.</h2>
@@ -235,25 +238,25 @@ footer {
         <div class="tl-date">May 2025 – Present</div>
         <div class="tl-role">Penetration Tester · Security Consultant</div>
         <div class="tl-company">Malcrove EMEA Technology L.L.C., Dubai</div>
-        <div class="tl-desc">Lead penetration testing engagements across web, mobile, and infrastructure. Establish scope, plan and coordinate vulnerability assessments, identify complex vulnerabilities through chained attack flows, and deliver comprehensive reports for both technical and executive audiences. Contribute to internal R&D of proprietary tools, scripts, and training materials.</div>
+        <div class="tl-desc">Lead penetration testing engagements across web, mobile, and infrastructure. Establish scope, plan vulnerability assessments, identify complex vulnerabilities through chained attack flows, and deliver comprehensive reports for technical and executive audiences. Contribute to internal R&D of proprietary tools and training materials.</div>
       </div>
       <div class="tl-item">
         <div class="tl-date">Nov 2022 – Aug 2024</div>
         <div class="tl-role">Cyber Security Analyst · Security Engineer</div>
         <div class="tl-company">B&S World Supply, Dubai</div>
-        <div class="tl-desc">Conducted security tests on internal and external systems, networks, and applications. Developed and enforced policies aligned with NIST, PCI DSS, and ISO 27001. Researched and documented vulnerabilities with remediation guidance. Minimised downtime and ensured business continuity. Collaborated with IT Risk Analysts, Threat Analysts, and Security Officers.</div>
+        <div class="tl-desc">Conducted security tests on internal and external systems, networks, and applications. Developed policies aligned with NIST, PCI DSS, and ISO 27001. Collaborated with IT Risk Analysts, Threat Analysts, and Security Officers to identify risks and propose solutions.</div>
       </div>
       <div class="tl-item">
         <div class="tl-date">Nov 2021 – Sep 2022</div>
         <div class="tl-role">Security Engineer · Penetration Tester</div>
         <div class="tl-company">NPCC, Abu Dhabi</div>
-        <div class="tl-desc">Penetration tested web applications, mobile applications, and thick clients. Performed OSINT at an organisational level. Collaborated with developers to remediate vulnerabilities. Participated in purple team exercises. Ran vulnerability management programs including prioritisation.</div>
+        <div class="tl-desc">Penetration tested web and mobile applications and thick clients. Performed OSINT, participated in purple team exercises, and ran vulnerability management programs including prioritisation.</div>
       </div>
       <div class="tl-item">
         <div class="tl-date">Aug 2020 – Oct 2021</div>
         <div class="tl-role">Security Engineer · Penetration Tester</div>
         <div class="tl-company">VaporVM, Lahore, Pakistan</div>
-        <div class="tl-desc">Performed host, network, web, and mobile application penetration tests based on OWASP Top 10. Conducted risk assessments for corporate compliance. Configured custom penetration testing tools and scenarios. Participated in CTF competitions.</div>
+        <div class="tl-desc">Performed host, network, web, and mobile application penetration tests. Conducted risk assessments for corporate compliance and participated in CTF competitions.</div>
       </div>
     </div>
   </div>
@@ -268,7 +271,7 @@ footer {
       <div class="card">
         <div class="card-icon">🌐</div>
         <h3>Web Application Pentesting</h3>
-        <p>OWASP Top 10, API security, SAST and DAST, manual testing, SQLMap, BurpSuite Pro, Acunetix, Nikto, AppScan, Shodan, source code static analysis.</p>
+        <p>OWASP Top 10, API security, SAST &amp; DAST, manual testing. BurpSuite Pro, SQLMap, Acunetix, Nikto, AppScan, Shodan, source code static analysis.</p>
         <div class="card-tags"><span class="tag accent">BurpSuite</span><span class="tag">SQLMap</span><span class="tag">Acunetix</span></div>
       </div>
       <div class="card">
@@ -286,7 +289,7 @@ footer {
       <div class="card">
         <div class="card-icon">☁️</div>
         <h3>Cloud Security</h3>
-        <p>AWS cloud penetration testing and configuration assessments. Identifying misconfigurations, IAM privilege paths, storage exposure, and cloud-native attack surfaces.</p>
+        <p>AWS cloud penetration testing and configuration assessments. IAM privilege paths, storage exposure, and cloud-native attack surface mapping.</p>
         <div class="card-tags"><span class="tag accent">AWS</span><span class="tag">IAM</span><span class="tag">S3</span></div>
       </div>
       <div class="card">
@@ -296,23 +299,23 @@ footer {
         <div class="card-tags"><span class="tag accent">Nmap</span><span class="tag">Nessus</span><span class="tag">Metasploit</span></div>
       </div>
       <div class="card">
-        <div class="card-icon">🔴</div>
-        <h3>Purple Team &amp; Compliance</h3>
-        <p>Purple team exercises, detection and response evaluation. NIST, PCI DSS, and ISO 27001 compliance. Security policy and procedure development.</p>
+        <div class="card-icon">📋</div>
+        <h3>Compliance &amp; Governance</h3>
+        <p>NIST, PCI DSS, and ISO 27001 frameworks. Security policy and procedure development, vulnerability management programs, stakeholder communication.</p>
         <div class="card-tags"><span class="tag accent">NIST</span><span class="tag">PCI DSS</span><span class="tag">ISO 27001</span></div>
       </div>
     </div>
     <div class="skills-row">
       <span class="pill">Python</span><span class="pill">Bash</span><span class="pill">PowerShell</span>
-      <span class="pill">Kali Linux</span><span class="pill">Docker</span><span class="pill">CTF</span>
-      <span class="pill">Wireshark</span><span class="pill">OSINT</span><span class="pill">Purple Team</span>
-      <span class="pill">Red Teaming</span><span class="pill">DevSecOps</span>
+      <span class="pill">Kali Linux</span><span class="pill">Docker</span><span class="pill">Red Teaming</span>
+      <span class="pill">Purple Team</span><span class="pill">OSINT</span><span class="pill">CTF</span>
+      <span class="pill">Wireshark</span><span class="pill">DevSecOps</span>
     </div>
   </div>
 </section>
 
 <!-- ═══════════ PROJECTS ═══════════ -->
-<section style="padding-top:2rem;">
+<section style="background:var(--surface);">
   <div class="wrap">
     <p class="kicker">Engagements</p>
     <h2 class="h2">Sectors I've worked in.</h2>
@@ -327,15 +330,15 @@ footer {
 </section>
 
 <!-- ═══════════ CERTIFICATIONS ═══════════ -->
-<section id="certs" style="padding-top:2rem;">
+<section id="certs">
   <div class="wrap">
     <p class="kicker">Credentials</p>
     <h2 class="h2">Industry certifications.</h2>
-    <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+    <div class="grid">
       <div class="card">
         <div class="card-icon">🎯</div>
         <h3>OSCP+</h3>
-        <p>Offensive Security Certified Professional (plus). Advanced hands-on penetration testing certification with AD attack specialisation. 24-hour practical exam.</p>
+        <p>Offensive Security Certified Professional (plus). Advanced hands-on penetration testing with AD attack specialisation. 24-hour practical examination.</p>
       </div>
       <div class="card">
         <div class="card-icon">⚔️</div>
@@ -360,30 +363,30 @@ footer {
       <div class="card">
         <div class="card-icon">💻</div>
         <h3>Practical Ethical Hacking</h3>
-        <p>TCM Security. Hands-on course covering Active Directory attacks, web app pentesting, privilege escalation, and reporting.</p>
+        <p>TCM Security. AD attacks, web app pentesting, privilege escalation, and professional reporting.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════ EDUCATION ═══════════ -->
-<section style="padding-top:2rem;">
+<section style="background:var(--surface);">
   <div class="wrap">
     <p class="kicker">Education</p>
     <h2 class="h2">Academic background.</h2>
     <div class="tl">
       <div class="tl-item">
         <div class="tl-date">2016 – 2020</div>
-        <div class="tl-role">Bachelor of Science in Software Engineering</div>
+        <div class="tl-role">B.Sc. Software Engineering</div>
         <div class="tl-company">COMSATS University</div>
-        <div class="tl-desc">Final Project: eCom &amp; eLearning Platform — Integrated B2C e-commerce and eLearning functionalities using React, Node.js (API), and MySQL.</div>
+        <div class="tl-desc">Final Project: eCom &amp; eLearning Platform — Integrated B2C e-commerce and eLearning using React, Node.js, and MySQL.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════ CONTACT ═══════════ -->
-<section id="contact" style="padding-top:2rem;">
+<section id="contact">
   <div class="wrap">
     <p class="kicker">Contact</p>
     <h2 class="h2">Get in touch.</h2>
@@ -392,14 +395,14 @@ footer {
       <a href="tel:+971528638661" class="contact-link"><span class="icon">📱</span> +971 528 638661</a>
       <a href="https://linkedin.com/in/shaheerkhalid" target="_blank" class="contact-link"><span class="icon">💼</span> LinkedIn</a>
       <div class="contact-link"><span class="icon">📍</span> Dubai, UAE</div>
-      <a href="#" class="contact-link" onclick="Cal.ns['30min']('show'); return false;"><span class="icon">📅</span> Schedule a Call</a>
+      <a href="#" class="contact-link" onclick="Cal.ns['30min']('show'); return false;" style="border-color:var(--accent);background:var(--accent-soft);"><span class="icon">📅</span> Schedule a Call</a>
     </div>
   </div>
 </section>
 
-<footer>Shaheer Khalid &nbsp;·&nbsp; Offensive Security Professional &nbsp;·&nbsp; OSCP+ · CRTP · CEH</footer>
+<footer>Shaheer Khalid &nbsp;·&nbsp; Offensive Security &nbsp;·&nbsp; OSCP+ · CRTP · CEH</footer>
 
-<!-- Cal floating-popup embed code -->
+<!-- Cal floating-popup embed -->
 <script type="text/javascript">
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 Cal("init", "30min", {origin:"https://app.cal.com"});
