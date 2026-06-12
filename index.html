@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaheer Khalid | Offensive Security Professional</title>
+<meta name="description" content="Shaheer Khalid — OSCP+ | CRTP | Penetration Tester & Security Consultant in Dubai, UAE. 6+ years in offensive security.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0e14;--surface:#131820;--border:#1e2733;
+  --text:#c8ccd4;--text-muted:#6c7680;--heading:#e6e8ec;
+  --accent:#39bae6;--accent2:#ff8f40;--green:#7fd962;
+  --radius:6px;--radius-lg:10px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.7;
+  min-height:100vh
+}
+.container{max-width:880px;margin:0 auto;padding:0 1.5rem}
+
+/* HERO */
+.hero{padding:5rem 0 3rem;text-align:center;border-bottom:1px solid var(--border)}
+.hero h1{font-size:2.5rem;font-weight:800;color:var(--heading);letter-spacing:-0.02em}
+.hero h1 span{color:var(--accent)}
+.hero .tagline{font-size:1.15rem;color:var(--text-muted);margin:.5rem 0 1rem}
+.hero .location{font-size:.9rem;color:var(--accent2);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:.35rem}
+.hero .badges{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.badge{
+  display:inline-block;padding:.35rem .75rem;border-radius:20px;
+  font-size:.78rem;font-weight:600;letter-spacing:.03em;
+  border:1px solid var(--border);background:var(--surface)
+}
+.badge.highlight{background:rgba(57,186,230,.12);border-color:var(--accent);color:var(--accent)}
+
+/* SECTIONS */
+section{padding:3.5rem 0;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+h2{font-size:1.5rem;font-weight:700;color:var(--heading);margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}
+h2::before{content:'';display:inline-block;width:3px;height:20px;background:var(--accent);border-radius:2px}
+
+/* EXPERIENCE */
+.exp-item{margin-bottom:2rem;padding-left:1.25rem;border-left:2px solid var(--border)}
+.exp-item:hover{border-left-color:var(--accent)}
+.exp-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem}
+.exp-title{font-weight:700;color:var(--heading);font-size:1.05rem}
+.exp-company{color:var(--accent);font-size:.9rem}
+.exp-date{color:var(--text-muted);font-size:.82rem;white-space:nowrap}
+.exp-duties{margin-top:.5rem;list-style:none}
+.exp-duties li{position:relative;padding-left:1rem;margin-bottom:.35rem;font-size:.92rem;color:var(--text)}
+.exp-duties li::before{content:'▸';position:absolute;left:0;color:var(--green);font-size:.75rem;top:.15rem}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
+.skill-cat{background:var(--surface);border-radius:var(--radius-lg);padding:1.25rem;border:1px solid var(--border)}
+.skill-cat h3{font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.05em}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.skill-tag{font-size:.78rem;padding:.2rem .6rem;border-radius:4px;background:rgba(255,143,64,.08);color:var(--accent2);border:1px solid rgba(255,143,64,.15);white-space:nowrap}
+
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem}
+.cert-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;transition:border-color .2s}
+.cert-card:hover{border-color:var(--accent)}
+.cert-name{font-weight:700;font-size:.9rem;color:var(--heading)}
+.cert-issuer{font-size:.78rem;color:var(--text-muted);margin-top:.2rem}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;transition:border-color .2s}
+.project-card:hover{border-color:var(--accent)}
+.project-sector{font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.35rem}
+.project-desc{font-size:.88rem;color:var(--text);line-height:1.6}
+
+/* CONTACT */
+.contact-links{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center}
+.contact-link{display:flex;align-items:center;gap:.5rem;color:var(--text);text-decoration:none;font-size:.95rem;padding:.75rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);transition:border-color .2s}
+.contact-link:hover{border-color:var(--accent);color:var(--accent)}
+.contact-link .icon{font-size:1.2rem}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem 0;color:var(--text-muted);font-size:.82rem}
+
+/* TERMINAL BANNER */
+.terminal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.85rem;margin-top:2rem}
+.terminal .prompt{color:var(--green)}
+.terminal .cmd{color:var(--accent)}
+.terminal .output{color:var(--text)}
+
+@media (max-width:640px){
+  .hero h1{font-size:1.75rem}
+  .hero{padding:3rem 0 2rem}
+  section{padding:2.5rem 0}
+  .exp-header{flex-direction:column}
+  .skills-grid{grid-template-columns:1fr}
+  .contact-links{flex-direction:column;align-items:stretch}
+  .contact-link{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <h1>Shaheer <span>Khalid</span></h1>
+    <p class="tagline">Offensive Security Professional · Penetration Tester · Red Teamer</p>
+    <p class="location">📍 Dubai, United Arab Emirates</p>
+    <div class="badges">
+      <span class="badge highlight">OSCP+</span>
+      <span class="badge highlight">CRTP</span>
+      <span class="badge">CEH</span>
+      <span class="badge">CAP</span>
+      <span class="badge">CNSS</span>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT / SUMMARY -->
+<section class="container">
+  <h2>About</h2>
+  <p style="font-size:1.02rem;line-height:1.8">
+    Cybersecurity professional with <strong>6+ years</strong> of industry experience in penetration testing, 
+    vulnerability assessment, and information security. I specialize in <strong style="color:var(--accent)">web, mobile, 
+    and network penetration testing</strong>, with a deep focus on red teaming, security compliance 
+    (NIST, PCI DSS, ISO 27001), and building practical defense strategies. 
+    Based in Dubai, serving clients across the Middle East, Pakistan, USA, and Canada.
+  </p>
+  <div class="terminal">
+    <span class="prompt">shaheer@khalid:~$</span> <span class="cmd">whoami</span><br>
+    <span class="output">Penetration Tester | OSCP+ | CRTP | 6+ yrs offensive security | Based in Dubai 🇦🇪</span><br><br>
+    <span class="prompt">shaheer@khalid:~$</span> <span class="cmd">cat /etc/motd</span><br>
+    <span class="output">"Break it before the bad guys do."</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="container">
+  <h2>Experience</h2>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Penetration Tester | Security Consultant</div>
+        <div class="exp-company">Malcrove EMEA Technology L.L.C., Dubai</div>
+      </div>
+      <div class="exp-date">May 2025 – Present</div>
+    </div>
+    <ul class="exp-duties">
+      <li>Scope, plan, and execute penetration testing engagements based on client requirements</li>
+      <li>Develop in-house methodologies and contribute new hacking techniques & defense mechanisms</li>
+      <li>Identify complex vulnerabilities through chained attack flows</li>
+      <li>Assess operational and business impact of exploits to prioritize risk remediation</li>
+      <li>Deliver comprehensive reports for technical and executive audiences</li>
+      <li>Research & develop proprietary tools, scripts, and training material</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Cyber Security Analyst | Security Engineer</div>
+        <div class="exp-company">B&S World Supply, Dubai</div>
+      </div>
+      <div class="exp-date">Nov 2022 – Aug 2024</div>
+    </div>
+    <ul class="exp-duties">
+      <li>Conducted security tests on internal/external systems, networks, and applications</li>
+      <li>Developed and enforced security policies aligned with NIST, PCI DSS, and ISO 27001</li>
+      <li>Researched, documented, and reported vulnerabilities with remediation guidance</li>
+      <li>Collaborated with IT Risk, Threat Analysts, and Security Officers on risk mitigation</li>
+      <li>Drove cybersecurity awareness and training across the organization</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Security Engineer | Penetration Tester</div>
+        <div class="exp-company">NPCC, Abu Dhabi</div>
+      </div>
+      <div class="exp-date">Nov 2021 – Sep 2022</div>
+    </div>
+    <ul class="exp-duties">
+      <li>Penetration tested web apps, mobile apps, and thick clients</li>
+      <li>Participated in purple team exercises to enhance detection & response capabilities</li>
+      <li>Ran vulnerability management programs including triage and prioritization</li>
+      <li>Performed OSINT at organizational level to identify security risks</li>
+      <li>Produced detailed assessment reports with actionable recommendations</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Security Engineer | Penetration Tester</div>
+        <div class="exp-company">VaporVM, Lahore, Pakistan</div>
+      </div>
+      <div class="exp-date">Aug 2020 – Oct 2021</div>
+    </div>
+    <ul class="exp-duties">
+      <li>Performed host, network, web, and mobile app pentests based on OWASP Top 10</li>
+      <li>Conducted risk assessments ensuring compliance with security standards</li>
+      <li>Configured custom pentesting tools and scenarios</li>
+      <li>Participated in CTF competitions to sharpen real-world attack skills</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="container">
+  <h2>Technical Arsenal</h2>
+  <div class="skills-grid">
+    <div class="skill-cat">
+      <h3>🔍 Web & App Pentest</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">BurpSuite</span><span class="skill-tag">Acunetix</span>
+        <span class="skill-tag">Nikto</span><span class="skill-tag">AppScan</span>
+        <span class="skill-tag">SQLMap</span><span class="skill-tag">OWASP Top 10</span>
+        <span class="skill-tag">SAST/DAST</span><span class="skill-tag">Shodan</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>📱 Mobile Pentest</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Frida</span><span class="skill-tag">Logcat</span>
+        <span class="skill-tag">Drozer</span><span class="skill-tag">ADB</span>
+        <span class="skill-tag">apktool</span><span class="skill-tag">jadx</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>🏢 Active Directory</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">BloodHound</span><span class="skill-tag">Mimikatz</span>
+        <span class="skill-tag">CrackMapExec</span><span class="skill-tag">Impacket</span>
+        <span class="skill-tag">PowerView</span><span class="skill-tag">PowerSploit</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>🌐 Network Security</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">NMAP</span><span class="skill-tag">Nessus</span>
+        <span class="skill-tag">Metasploit</span><span class="skill-tag">Hashcat</span>
+        <span class="skill-tag">Aircrack-ng</span><span class="skill-tag">Ligolo</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>☁️ Cloud Security</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS Pentesting</span><span class="skill-tag">Cloud Config Assessment</span>
+        <span class="skill-tag">IAM Review</span><span class="skill-tag">S3 Auditing</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h3>📋 Compliance</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">NIST</span><span class="skill-tag">PCI DSS</span>
+        <span class="skill-tag">ISO 27001</span><span class="skill-tag">Vulnerability Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="container">
+  <h2>Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card"><div class="cert-name">OSCP+</div><div class="cert-issuer">Offensive Security</div></div>
+    <div class="cert-card"><div class="cert-name">CRTP</div><div class="cert-issuer">Altered Security</div></div>
+    <div class="cert-card"><div class="cert-name">CEH</div><div class="cert-issuer">EC-Council</div></div>
+    <div class="cert-card"><div class="cert-name">CAP</div><div class="cert-issuer">Certified AppSec Practitioner</div></div>
+    <div class="cert-card"><div class="cert-name">CNSS</div><div class="cert-issuer">Certified Network Security Specialist</div></div>
+    <div class="cert-card"><div class="cert-name">PEH</div><div class="cert-issuer">TCM Security</div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="container">
+  <h2>Notable Engagements</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-sector">🏦 Financial Sector</div>
+      <div class="project-desc">Penetrated banking applications bypassing security controls. Discovered amount manipulation and transaction integrity flaws through static and dynamic analysis.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-sector">🏥 Health Sector</div>
+      <div class="project-desc">Assessed vaccine web portals for OWASP Top 10 vulnerabilities. Conducted mobile application penetration testing for healthcare platforms.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-sector">🛢️ Oil & Gas</div>
+      <div class="project-desc">Executed Black and Grey Box pentests on web, mobile, and infrastructure. Uncovered critical RCE and DoS vulnerabilities in industrial systems.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-sector">🏭 Industrial Manufacturing</div>
+      <div class="project-desc">Assessed network devices and servers across USA, Canada & Middle East. Performed SAST and DAST on web and mobile applications.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-sector">🛒 E-Commerce</div>
+      <div class="project-desc">Identified high-severity IDOR and account takeover vulnerabilities in e-commerce platforms, bypassing advanced security measures.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="container">
+  <h2>Education</h2>
+  <div class="exp-item">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">B.Sc. Software Engineering</div>
+        <div class="exp-company">COMSATS University, Pakistan</div>
+      </div>
+      <div class="exp-date">2016 – 2020</div>
+    </div>
+    <p style="margin-top:.5rem;font-size:.9rem;color:var(--text-muted)">
+      Final Project: eCom & eLearning Platform — Integrated B2C e-commerce and eLearning functionalities using React, Node.js, and MySQL.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="container" style="text-align:center">
+  <h2 style="justify-content:center">Contact</h2>
+  <div class="contact-links">
+    <a href="mailto:shaheerkhalid12@gmail.com" class="contact-link">
+      <span class="icon">📧</span> shaheerkhalid12@gmail.com
+    </a>
+    <a href="tel:+971528638661" class="contact-link">
+      <span class="icon">📱</span> +971 528 638661
+    </a>
+    <a href="https://linkedin.com/in/shaheerkhalid" class="contact-link">
+      <span class="icon">💼</span> LinkedIn
+    </a>
+    <a href="https://github.com/shaheerkhalid" class="contact-link">
+      <span class="icon">🐙</span> GitHub
+    </a>
+  </div>
+</section>
+
+<footer>© 2026 Shaheer Khalid · Dubai, UAE · Built with ♥</footer>
+
+</body>
+</html>
