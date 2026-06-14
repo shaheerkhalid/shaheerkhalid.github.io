@@ -7,7 +7,9 @@
 <meta name="description" content="Senior Penetration Tester — 6+ years in offensive security. OSCP+, CRTP. UAE-based.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #0A0A0A;
@@ -29,9 +31,10 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; background: var(--bg); }
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
+  font-weight: 300;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -56,14 +59,21 @@ body {
   100% { transform: translate(20%, 10%); }
 }
 
+/* ── Background canvas: matrix + particles + nodes ── */
+#bg-canvas {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+  opacity: 0.35;
+}
+
 /* ── Layout ── */
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
 section { padding: 6rem 0; position: relative; }
 
 /* ── Typography ── */
-.h1 { font-family: 'Syne', sans-serif; font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 800; letter-spacing: -0.045em; line-height: 0.95; }
-.h2 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 3rem; }
-.h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+.h1 { font-family: 'Clash Display', sans-serif; font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 700; letter-spacing: -0.045em; line-height: 0.95; }
+.h2 { font-family: 'Clash Display', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 3rem; }
+.h3 { font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
 .body { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 480px; }
 .mono { font-family: 'JetBrains Mono', monospace; }
 .gradient-text {
@@ -104,7 +114,7 @@ nav {
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border); border-radius: var(--radius);
 }
-.nav-brand { font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: 0.04em; }
+.nav-brand { font-family: 'Clash Display', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: 0.04em; }
 .nav-brand span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 nav .links { display: flex; gap: 1.75rem; }
 nav .links a {
@@ -132,7 +142,7 @@ nav .links a:hover { color: var(--orange); }
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.8rem 1.75rem; border-radius: var(--radius);
-  font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600;
+  font-family: 'Satoshi', sans-serif; font-size: 0.82rem; font-weight: 600;
   text-decoration: none; border: none; cursor: pointer;
   transition: all 0.15s var(--ease); letter-spacing: 0.01em;
   position: relative; overflow: hidden;
@@ -178,7 +188,7 @@ nav .links a:hover { color: var(--orange); }
 /* ── Stats row ── */
 .stats-row { display: flex; gap: 2.5rem; margin-top: 2.5rem; }
 .stat { text-align: left; }
-.stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-num { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.15rem; }
 
 /* ── Section accent ── */
@@ -288,7 +298,7 @@ nav .links a:hover { color: var(--orange); }
   background: var(--gradient-subtle); pointer-events: none;
 }
 .cta-content { position: relative; text-align: center; padding: 4rem 2rem; }
-.cta-content h3 { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; }
+.cta-content h3 { font-family: 'Clash Display', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; }
 .cta-content p { color: var(--text-secondary); max-width: 440px; margin: 0 auto 1.5rem; font-size: 0.88rem; }
 
 /* ── Footer ── */
@@ -322,6 +332,7 @@ footer {
 
 <div class="hero-glow" style="top:-200px;left:-200px;"></div>
 <div class="hero-glow" style="bottom:-200px;right:-200px;"></div>
+<canvas id="bg-canvas"></canvas>
 
 <nav>
   <a href="#home" class="nav-brand">SK<span>.</span></a>
@@ -624,6 +635,153 @@ footer {
 </footer>
 
 <!-- ═══════════ SCRIPTS ═══════════ -->
+
+<!-- Background Animation: Matrix Grid + Particles + Connection Nodes + Mouse Parallax -->
+<script>
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H;
+
+  // ── Particles ──
+  const particles = [];
+  const PARTICLE_COUNT = 60;
+  class Particle {
+    constructor() {
+      this.reset(true);
+    }
+    reset(init) {
+      this.x = Math.random() * W;
+      this.y = init ? Math.random() * H : -10;
+      this.size = 0.4 + Math.random() * 1.2;
+      this.speed = 0.1 + Math.random() * 0.4;
+      this.opacity = 0.15 + Math.random() * 0.25;
+      this.color = Math.random() < 0.5 ? '255,122,0' : '209,0,28';
+      this.wobble = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = 0.002 + Math.random() * 0.008;
+    }
+    update() {
+      this.y += this.speed;
+      this.x += Math.sin(this.wobble) * 0.15;
+      this.wobble += this.wobbleSpeed;
+      if (this.y > H + 10) this.reset(false);
+    }
+    draw(ctx) {
+      ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+  // ── Nodes ──
+  const NODE_COUNT = 15;
+  const nodes = [];
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      baseX: Math.random(),
+      baseY: Math.random(),
+      size: 0.6 + Math.random() * 1.4,
+      opacity: 0.08 + Math.random() * 0.12,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.0003 + Math.random() * 0.001,
+      amp: 20 + Math.random() * 40,
+    });
+  }
+
+  // ── Grid lines ──
+  const GRID_SPACING = 60;
+  let gridOffset = 0;
+
+  // ── Mouse ──
+  let mouseX = 0.5, mouseY = 0.5;
+  let targetMX = 0.5, targetMY = 0.5;
+  document.addEventListener('mousemove', e => {
+    targetMX = e.clientX / window.innerWidth;
+    targetMY = e.clientY / window.innerHeight;
+  });
+
+  // ── Resize ──
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function drawGrid(ctx) {
+    ctx.strokeStyle = 'rgba(255,122,0,0.015)';
+    ctx.lineWidth = 0.5;
+    for (let x = -gridOffset % GRID_SPACING; x < W + GRID_SPACING; x += GRID_SPACING) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = -gridOffset % GRID_SPACING; y < H + GRID_SPACING; y += GRID_SPACING) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+  }
+
+  function drawConnections(ctx) {
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 180) {
+          const alpha = (1 - dist / 180) * 0.05;
+          ctx.strokeStyle = `rgba(255,122,0,${alpha})`;
+          ctx.lineWidth = 0.3;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    // Smooth mouse
+    mouseX += (targetMX - mouseX) * 0.02;
+    mouseY += (targetMY - mouseY) * 0.02;
+
+    // Parallax grid drift
+    gridOffset = (mouseX - 0.5) * 4;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Matrix grid
+    drawGrid(ctx);
+
+    // Update + draw nodes
+    ctx.fillStyle = 'rgba(255,122,0,0.12)';
+    nodes.forEach(n => {
+      n.x = n.baseX * W + Math.cos(Date.now() * n.speed + n.phase) * n.amp;
+      n.y = n.baseY * H + Math.sin(Date.now() * n.speed * 1.3 + n.phase) * n.amp * 0.7;
+      // Mouse parallax
+      n.x += (mouseX - 0.5) * 20;
+      n.y += (mouseY - 0.5) * 20;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Connections
+    drawConnections(ctx);
+
+    // Particles
+    particles.forEach(p => { p.update(); p.draw(ctx); });
+  }
+  animate();
+})();
+</script>
 
 <!-- Cal floating-popup embed -->
 <script type="text/javascript">
