@@ -308,6 +308,33 @@ footer {
   color: var(--text-muted); border-top: 1px solid var(--border);
 }
 
+/* ── Fixed Book a Call ── */
+.fixed-cta {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #FF7A00, #D1001C);
+  color: #fff; border-radius: var(--radius); cursor: pointer;
+  font-family: 'Satoshi', sans-serif; font-size: 0.82rem; font-weight: 600;
+  text-decoration: none; border: none; letter-spacing: 0.01em;
+  box-shadow: 0 4px 24px rgba(255,122,0,0.3);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translateY(12px);
+  animation: ctaIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+.fixed-cta::before {
+  content: ''; position: absolute; inset: 0; border-radius: var(--radius);
+  background: linear-gradient(135deg, #D1001C, #FF7A00);
+  opacity: 0; transition: opacity 0.25s;
+}
+.fixed-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(255,122,0,0.5);
+}
+.fixed-cta:hover::before { opacity: 1; }
+.fixed-cta span { position: relative; z-index: 1; }
+@keyframes ctaIn { to { opacity: 1; transform: translateY(0); } }
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -333,6 +360,7 @@ footer {
 <div class="hero-glow" style="top:-200px;left:-200px;"></div>
 <div class="hero-glow" style="bottom:-200px;right:-200px;"></div>
 <canvas id="bg-canvas"></canvas>
+<a href="#" class="fixed-cta" onclick="Cal.ns['30min']('show'); return false;"><span>Book a Call</span></a>
 
 <nav>
   <a href="#home" class="nav-brand">SK<span>.</span></a>
@@ -789,7 +817,6 @@ footer {
 Cal("init", "30min", {origin:"https://app.cal.com"});
 Cal.config = Cal.config || {};
 Cal.config.forwardQueryParams = true;
-  Cal.ns["30min"]("floatingButton", {"calLink":"shaheer-khalid/30min","config":{"layout":"month_view","useSlotsViewOnSmallScreen":"true"},"buttonText":"Book a Call"});
   Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 
