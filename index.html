@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shaheer Khalid · Offensive Security Consultant</title>
-<meta name="description" content="Offensive Security Consultant — Penetration Testing, Red Teaming, Vulnerability Assessment. OSCP+, CRTP.">
+<title>Shaheer Khalid · Offensive Security & Penetration Testing</title>
+<meta name="description" content="Senior Penetration Tester — 6+ years in offensive security. OSCP+, CRTP. UAE-based.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -18,12 +18,10 @@
   --text: #f5f5f5;
   --text-secondary: #999999;
   --text-muted: #666666;
-  --orange: #FF6B00;
+  --orange: #FF7A00;
   --crimson: #D1001C;
-  --gradient: linear-gradient(135deg, #FF6B00 0%, #D1001C 100%);
-  --gradient-subtle: linear-gradient(135deg, rgba(255,107,0,0.06) 0%, rgba(209,0,28,0.06) 100%);
-  --glow: radial-gradient(ellipse at 70% 30%, rgba(255,107,0,0.08) 0%, transparent 60%);
-  --glow-2: radial-gradient(ellipse at 30% 70%, rgba(209,0,28,0.06) 0%, transparent 50%);
+  --gradient: linear-gradient(135deg, #FF7A00 0%, #D1001C 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(255,122,0,0.06) 0%, rgba(209,0,28,0.06) 100%);
   --radius: 4px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -39,14 +37,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
-body::before {
-  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background: var(--glow), var(--glow-2);
-}
 ::selection { background: var(--orange); color: #fff; }
 
+/* ── Animated background glow ── */
+.hero-glow {
+  position: fixed; pointer-events: none; z-index: 0;
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(255,122,0,0.07) 0%, rgba(209,0,28,0.04) 35%, transparent 70%);
+  border-radius: 50%; filter: blur(60px);
+  animation: glowDrift 14s ease-in-out infinite alternate;
+}
+.hero-glow:nth-child(2) {
+  animation-delay: -7s;
+  background: radial-gradient(circle, rgba(209,0,28,0.06) 0%, rgba(255,122,0,0.03) 35%, transparent 70%);
+}
+@keyframes glowDrift {
+  0%   { transform: translate(-20%, -10%); }
+  100% { transform: translate(20%, 10%); }
+}
+
 /* ── Layout ── */
-.wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
 section { padding: 6rem 0; position: relative; }
 
 /* ── Typography ── */
@@ -66,6 +77,23 @@ section { padding: 6rem 0; position: relative; }
   text-transform: uppercase; letter-spacing: 0.2em;
   color: var(--orange); margin-bottom: 0.75rem;
 }
+
+/* ── Scroll reveal ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── Typewriter cursor ── */
+.typewriter-cursor {
+  display: inline-block; width: 3px; height: 1em;
+  background: var(--orange); margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 0.8s step-end infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
 /* ── Nav ── */
 nav {
@@ -87,7 +115,7 @@ nav .links a {
 nav .links a:hover { color: var(--orange); }
 
 /* ── Hero ── */
-.hero { padding: 8rem 0 5rem; min-height: 90vh; display: flex; align-items: center; }
+.hero { padding: 8rem 0 5rem; min-height: 90vh; display: flex; align-items: center; position: relative; }
 .hero-grid {
   display: grid; grid-template-columns: 1fr 0.55fr; gap: 4rem; align-items: center;
 }
@@ -96,7 +124,6 @@ nav .links a:hover { color: var(--orange); }
   text-transform: uppercase; letter-spacing: 0.22em;
   color: var(--orange); margin-bottom: 1.25rem;
 }
-.hero-title { margin-bottom: 0.25rem; }
 .hero-tagline {
   font-size: 1.05rem; color: var(--text-secondary);
   max-width: 460px; line-height: 1.65; margin: 1.5rem 0 2rem;
@@ -108,12 +135,20 @@ nav .links a:hover { color: var(--orange); }
   font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600;
   text-decoration: none; border: none; cursor: pointer;
   transition: all 0.15s var(--ease); letter-spacing: 0.01em;
+  position: relative; overflow: hidden;
 }
 .btn-primary {
   background: var(--gradient); color: #fff;
-  box-shadow: 0 4px 24px rgba(255,107,0,0.2);
+  box-shadow: 0 4px 24px rgba(255,122,0,0.2);
 }
-.btn-primary:hover { box-shadow: 0 6px 32px rgba(255,107,0,0.35); transform: translateY(-1px); }
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, #D1001C 0%, #FF7A00 100%);
+  opacity: 0; transition: opacity 0.25s var(--ease);
+}
+.btn-primary:hover { box-shadow: 0 6px 36px rgba(255,122,0,0.4), inset 0 0 40px rgba(255,122,0,0.1); transform: translateY(-1px); }
+.btn-primary:hover::after { opacity: 1; }
+.btn-primary span { position: relative; z-index: 1; }
 .btn-ghost {
   background: transparent; color: var(--text);
   border: 1px solid var(--border);
@@ -139,15 +174,6 @@ nav .links a:hover { color: var(--orange); }
   display: flex; align-items: center; justify-content: center;
   background: var(--gradient-subtle);
 }
-.portrait-placeholder {
-  font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700;
-  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;
-  text-align: center;
-}
-.portrait-placeholder small {
-  display: block; font-family: 'Inter', sans-serif; font-size: 0.65rem;
-  font-weight: 400; color: var(--text-muted); margin-top: 0.5rem;
-}
 
 /* ── Stats row ── */
 .stats-row { display: flex; gap: 2.5rem; margin-top: 2.5rem; }
@@ -155,22 +181,18 @@ nav .links a:hover { color: var(--orange); }
 .stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.15rem; }
 
-/* ── Sections ── */
-.section-accent {
-  width: 40px; height: 2px;
-  background: var(--gradient); margin-bottom: 1.5rem;
-}
-.section-header { margin-bottom: 3rem; }
+/* ── Section accent ── */
+.section-accent { width: 40px; height: 2px; background: var(--gradient); margin-bottom: 1.5rem; }
 
-/* ── Cards ── */
+/* ── Cards (competencies + certs) ── */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--border); }
 .grid > * { background: var(--bg); }
 .card {
   padding: 2rem;
-  transition: background 0.15s var(--ease);
+  transition: background 0.15s var(--ease), transform 0.15s var(--ease);
   position: relative;
 }
-.card:hover { background: var(--bg-card); }
+.card:hover { background: var(--bg-card); transform: translateY(-2px); }
 .card-icon { font-size: 1.3rem; margin-bottom: 1rem; opacity: 0.8; }
 .card h3 { margin-bottom: 0.5rem; }
 .card p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; }
@@ -181,24 +203,55 @@ nav .links a:hover { color: var(--orange); }
   background: rgba(255,255,255,0.03); color: var(--text-secondary);
   border: 1px solid var(--border);
 }
-.tag.accent { background: var(--gradient-subtle); border-color: rgba(255,107,0,0.15); color: var(--orange); }
+.tag.accent { background: var(--gradient-subtle); border-color: rgba(255,122,0,0.15); color: var(--orange); }
 
-/* ── Timeline ── */
-.tl { position: relative; padding-left: 1.5rem; }
-.tl::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 1px; background: var(--border); }
-.tl-item { position: relative; padding-bottom: 3rem; }
-.tl-item:last-child { padding-bottom: 0; }
-.tl-item::before {
-  content: ''; position: absolute; left: -4px; top: 5px;
-  width: 9px; height: 9px; background: var(--gradient);
+/* ── Progress bars ── */
+.skill-bar-group { display: flex; flex-direction: column; gap: 1.25rem; max-width: 600px; }
+.skill-bar-item { display: flex; flex-direction: column; gap: 0.35rem; }
+.skill-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.78rem; font-weight: 500;
 }
-.tl-date { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--orange); margin-bottom: 0.2rem; }
-.tl-role { font-size: 1rem; font-weight: 600; }
-.tl-company { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.35rem; }
-.tl-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; max-width: 520px; }
+.skill-bar-label span:last-child {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange);
+}
+.skill-bar-track {
+  width: 100%; height: 3px; background: var(--border);
+  border-radius: 2px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%; background: var(--gradient);
+  border-radius: 2px; width: 0;
+  transition: width 1.2s var(--ease);
+}
+
+/* ── Accordion Timeline ── */
+.accordion-tl { max-width: 680px; }
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 1.25rem 0; cursor: pointer; user-select: none;
+  transition: color 0.15s;
+}
+.accordion-header:hover { color: var(--orange); }
+.accordion-header-left { display: flex; flex-direction: column; gap: 0.15rem; }
+.accordion-date { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange); }
+.accordion-role { font-size: 0.95rem; font-weight: 600; }
+.accordion-company { font-size: 0.8rem; color: var(--text-secondary); }
+.accordion-toggle {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+  color: var(--text-muted); transition: transform 0.3s var(--ease);
+}
+.accordion-item.open .accordion-toggle { transform: rotate(45deg); }
+.accordion-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s var(--ease), padding 0.4s var(--ease);
+}
+.accordion-item.open .accordion-body { max-height: 300px; padding-bottom: 1.25rem; }
+.accordion-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
 
 /* ── Skills row ── */
-.skills-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2.5rem; }
+.skills-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2rem; }
 .pill {
   padding: 0.45rem 0.9rem; border-radius: var(--radius);
   font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
@@ -213,9 +266,20 @@ nav .links a:hover { color: var(--orange); }
 .sector {
   padding: 0.55rem 1rem; border: 1px solid var(--border);
   font-size: 0.78rem; font-weight: 500; color: var(--text-secondary);
-  background: var(--bg-card); transition: border-color 0.15s;
+  background: var(--bg-card); transition: all 0.15s var(--ease);
 }
-.sector:hover { border-color: var(--orange); }
+.sector:hover { border-color: var(--orange); transform: translateY(-1px); }
+
+/* ── Tech stack icons ── */
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1px; background: var(--border); }
+.tech-grid > * { background: var(--bg); }
+.tech-card {
+  padding: 1.5rem; text-align: center;
+  transition: background 0.15s var(--ease), transform 0.15s var(--ease);
+}
+.tech-card:hover { background: var(--bg-card); transform: translateY(-2px); }
+.tech-card .icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+.tech-card .name { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--text-secondary); }
 
 /* ── CTA Banner ── */
 .cta-section { position: relative; }
@@ -224,7 +288,7 @@ nav .links a:hover { color: var(--orange); }
   background: var(--gradient-subtle); pointer-events: none;
 }
 .cta-content { position: relative; text-align: center; padding: 4rem 2rem; }
-.cta-content h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; }
+.cta-content h3 { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; }
 .cta-content p { color: var(--text-secondary); max-width: 440px; margin: 0 auto 1.5rem; font-size: 0.88rem; }
 
 /* ── Footer ── */
@@ -239,6 +303,7 @@ footer {
   .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
   .portrait-container { max-width: 260px; justify-self: start; }
   .hero { min-height: auto; padding: 7rem 0 4rem; }
+  .tech-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
 }
 @media (max-width: 768px) {
   .h1 { font-size: 2.4rem; }
@@ -255,11 +320,15 @@ footer {
 </head>
 <body>
 
+<div class="hero-glow" style="top:-200px;left:-200px;"></div>
+<div class="hero-glow" style="bottom:-200px;right:-200px;"></div>
+
 <nav>
   <a href="#home" class="nav-brand">SK<span>.</span></a>
   <div class="links">
-    <a href="#experience">Services</a>
-    <a href="#skills">Research</a>
+    <a href="#competencies">Competencies</a>
+    <a href="#experience">Experience</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#certs">Credentials</a>
     <a href="#contact-cta">Connect</a>
   </div>
@@ -270,23 +339,23 @@ footer {
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-left">
-        <p class="hero-eyebrow">Offensive Security Consultant</p>
-        <h1 class="h1 hero-title">Shaheer<br><span class="gradient-text">Khalid</span></h1>
-        <p class="hero-tagline">
-          Penetration testing, red teaming, and vulnerability assessment across web, mobile, cloud, and enterprise environments — 6+ years of hands-on offensive security.
+        <p class="hero-eyebrow reveal">Offensive Security &amp; Penetration Testing</p>
+        <h1 class="h1 hero-title reveal reveal-delay-1">Shaheer<br><span class="gradient-text" id="typewriter-target">Khalid</span><span class="typewriter-cursor"></span></h1>
+        <p class="hero-tagline reveal reveal-delay-2">
+          Senior Penetration Tester with 6+ years of hands-on offensive security — red teaming, vulnerability assessment, and adversary simulation across enterprise environments.
         </p>
-        <div class="hero-cta">
-          <a href="#" class="btn btn-primary" onclick="Cal.ns['30min']('show'); return false;">Book a Call</a>
-          <a href="#experience" class="btn btn-ghost">View Work ↓</a>
+        <div class="hero-cta reveal reveal-delay-3">
+          <a href="#" class="btn btn-primary" onclick="Cal.ns['30min']('show'); return false;"><span>Book a Call</span></a>
+          <a href="#competencies" class="btn btn-ghost">View Work ↓</a>
         </div>
-        <div class="stats-row">
+        <div class="stats-row reveal reveal-delay-4">
           <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Years</div></div>
           <div class="stat"><div class="stat-num">6</div><div class="stat-label">Certifications</div></div>
           <div class="stat"><div class="stat-num">5</div><div class="stat-label">Sectors</div></div>
           <div class="stat"><div class="stat-num">4</div><div class="stat-label">Countries</div></div>
         </div>
       </div>
-      <div class="portrait-container">
+      <div class="portrait-container reveal reveal-delay-2">
         <div class="portrait-inner">
           <img src="portrait.jpg" alt="Shaheer Khalid" style="width:100%;height:100%;object-fit:cover;">
         </div>
@@ -295,106 +364,181 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════ EXPERIENCE ═══════════ -->
-<section id="experience">
+<!-- ═══════════ CORE COMPETENCIES ═══════════ -->
+<section id="competencies">
   <div class="wrap">
-    <div class="section-accent"></div>
-    <p class="kicker">Experience</p>
-    <h2 class="h2">Where I've <span class="gradient-text">operated</span>.</h2>
-    <div class="tl">
-      <div class="tl-item">
-        <div class="tl-date">May 2025 – Present</div>
-        <div class="tl-role">Penetration Tester · Security Consultant</div>
-        <div class="tl-company">Malcrove EMEA Technology L.L.C., Dubai</div>
-        <div class="tl-desc">Lead penetration testing engagements across web, mobile, and infrastructure. Establish scope, plan vulnerability assessments, identify complex vulnerabilities through chained attack flows, and deliver comprehensive reports for technical and executive audiences. Contribute to internal R&D of proprietary tools and training materials.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Nov 2022 – Aug 2024</div>
-        <div class="tl-role">Cyber Security Analyst · Security Engineer</div>
-        <div class="tl-company">B&S World Supply, Dubai</div>
-        <div class="tl-desc">Conducted security tests on internal and external systems, networks, and applications. Developed policies aligned with NIST, PCI DSS, and ISO 27001. Collaborated with IT Risk Analysts, Threat Analysts, and Security Officers to identify risks and propose solutions.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Nov 2021 – Sep 2022</div>
-        <div class="tl-role">Security Engineer · Penetration Tester</div>
-        <div class="tl-company">NPCC, Abu Dhabi</div>
-        <div class="tl-desc">Penetration tested web and mobile applications and thick clients. Performed OSINT, participated in purple team exercises, and ran vulnerability management programs including prioritisation.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Aug 2020 – Oct 2021</div>
-        <div class="tl-role">Security Engineer · Penetration Tester</div>
-        <div class="tl-company">VaporVM, Lahore, Pakistan</div>
-        <div class="tl-desc">Performed host, network, web, and mobile application penetration tests. Conducted risk assessments for corporate compliance and participated in CTF competitions.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ SKILLS ═══════════ -->
-<section id="skills">
-  <div class="wrap">
-    <div class="section-accent"></div>
-    <p class="kicker">Capabilities</p>
-    <h2 class="h2">What I bring to <span class="gradient-text">the table</span>.</h2>
+    <div class="section-accent reveal"></div>
+    <p class="kicker reveal">Core Competencies</p>
+    <h2 class="h2 reveal">What I bring to <span class="gradient-text">the table</span>.</h2>
     <div class="grid">
-      <div class="card">
+      <div class="card reveal reveal-delay-1">
         <div class="card-icon">🌐</div>
         <h3>Web Application Pentesting</h3>
         <p>OWASP Top 10, API security, SAST &amp; DAST, manual testing. BurpSuite Pro, SQLMap, Acunetix, Nikto, AppScan, Shodan, source code static analysis.</p>
         <div class="card-tags"><span class="tag accent">BurpSuite</span><span class="tag">SQLMap</span><span class="tag">Acunetix</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-1">
         <div class="card-icon">📱</div>
         <h3>Mobile App Pentesting</h3>
         <p>Android and iOS application security. Frida runtime instrumentation, Logcat analysis, Drozer, ADB, apktool, jadx reverse engineering, SSL pinning bypass.</p>
         <div class="card-tags"><span class="tag accent">Frida</span><span class="tag">jadx</span><span class="tag">apktool</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-2">
         <div class="card-icon">🏢</div>
         <h3>Active Directory Pentesting</h3>
         <p>CrackMapExec, Impacket, BloodHound, PowerView, Powersploit, Mimikatz, PowerUpSQL, UACme, Metasploit. Lateral movement, privilege escalation, persistence.</p>
         <div class="card-tags"><span class="tag accent">BloodHound</span><span class="tag">Mimikatz</span><span class="tag">Impacket</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-2">
         <div class="card-icon">☁️</div>
         <h3>Cloud Security</h3>
         <p>AWS cloud penetration testing and configuration assessments. IAM privilege paths, storage exposure, and cloud-native attack surface mapping.</p>
         <div class="card-tags"><span class="tag accent">AWS</span><span class="tag">IAM</span><span class="tag">S3</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-3">
         <div class="card-icon">🔌</div>
         <h3>Network Security VA/PT</h3>
         <p>NMAP, Nessus, Metasploit, Hashcat, Aircrack-ng, Netcat, Ligolo. Internal and external network assessments, wireless security testing.</p>
         <div class="card-tags"><span class="tag accent">Nmap</span><span class="tag">Nessus</span><span class="tag">Metasploit</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-3">
         <div class="card-icon">📋</div>
         <h3>Compliance &amp; Governance</h3>
         <p>NIST, PCI DSS, and ISO 27001 frameworks. Security policy and procedure development, vulnerability management programs, stakeholder communication.</p>
         <div class="card-tags"><span class="tag accent">NIST</span><span class="tag">PCI DSS</span><span class="tag">ISO 27001</span></div>
       </div>
     </div>
-    <div class="skills-row">
-      <span class="pill">Python</span><span class="pill">Bash</span><span class="pill">PowerShell</span>
-      <span class="pill">Kali Linux</span><span class="pill">Docker</span><span class="pill">Red Teaming</span>
-      <span class="pill">Purple Team</span><span class="pill">OSINT</span><span class="pill">CTF</span>
-      <span class="pill">Wireshark</span><span class="pill">DevSecOps</span>
+
+    <!-- Proficiency Bars -->
+    <div class="skill-bar-group reveal" style="margin-top:3rem;">
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Web Application Pentesting</span><span class="bar-val">95%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Active Directory &amp; Internal Network</span><span class="bar-val">90%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Mobile Application Pentesting</span><span class="bar-val">85%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Cloud Security (AWS)</span><span class="bar-val">82%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Red Teaming &amp; Adversary Simulation</span><span class="bar-val">88%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ SECTORS ═══════════ -->
-<section>
+<!-- ═══════════ EXPERIENCE (Accordion) ═══════════ -->
+<section id="experience" style="background:var(--bg-card);">
   <div class="wrap">
-    <div class="section-accent"></div>
-    <p class="kicker">Engagements</p>
-    <h2 class="h2">Sectors I've <span class="gradient-text">worked in</span>.</h2>
-    <div class="sector-list">
-      <div class="sector">🏦 Financial · Pakistan &amp; Middle East</div>
-      <div class="sector">🏥 Health · Pakistan &amp; Middle East</div>
-      <div class="sector">⛽ Oil &amp; Gas · Pakistan &amp; Middle East</div>
-      <div class="sector">🏭 Industrial Manufacturing · USA, Canada &amp; Middle East</div>
-      <div class="sector">🛒 E-Commerce · Pakistan &amp; Middle East</div>
+    <div class="section-accent reveal"></div>
+    <p class="kicker reveal">Experience</p>
+    <h2 class="h2 reveal">Security <span class="gradient-text">log</span>.</h2>
+    <div class="accordion-tl reveal">
+      <div class="accordion-item open">
+        <div class="accordion-header">
+          <div class="accordion-header-left">
+            <div class="accordion-date">May 2025 – Present</div>
+            <div class="accordion-role">Penetration Tester · Security Consultant</div>
+            <div class="accordion-company">Malcrove EMEA Technology L.L.C., Dubai</div>
+          </div>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-body">
+          <p class="accordion-desc">Lead penetration testing engagements across web, mobile, and infrastructure. Establish scope, plan vulnerability assessments, identify complex vulnerabilities through chained attack flows, and deliver comprehensive reports for technical and executive audiences. Contribute to internal R&D of proprietary tools and training materials.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-header-left">
+            <div class="accordion-date">Nov 2022 – Aug 2024</div>
+            <div class="accordion-role">Cyber Security Analyst · Security Engineer</div>
+            <div class="accordion-company">B&S World Supply, Dubai</div>
+          </div>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-body">
+          <p class="accordion-desc">Conducted security tests on internal and external systems, networks, and applications. Developed policies aligned with NIST, PCI DSS, and ISO 27001. Collaborated with IT Risk Analysts, Threat Analysts, and Security Officers to identify risks and propose solutions.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-header-left">
+            <div class="accordion-date">Nov 2021 – Sep 2022</div>
+            <div class="accordion-role">Security Engineer · Penetration Tester</div>
+            <div class="accordion-company">NPCC, Abu Dhabi</div>
+          </div>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-body">
+          <p class="accordion-desc">Penetration tested web and mobile applications and thick clients. Performed OSINT, participated in purple team exercises, and ran vulnerability management programs including prioritisation.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <div class="accordion-header-left">
+            <div class="accordion-date">Aug 2020 – Oct 2021</div>
+            <div class="accordion-role">Security Engineer · Penetration Tester</div>
+            <div class="accordion-company">VaporVM, Lahore, Pakistan</div>
+          </div>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-body">
+          <p class="accordion-desc">Performed host, network, web, and mobile application penetration tests. Conducted risk assessments for corporate compliance and participated in CTF competitions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ THREAT ASSESSMENT PORTFOLIO ═══════════ -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-accent reveal"></div>
+    <p class="kicker reveal">Threat Assessment Portfolio</p>
+    <h2 class="h2 reveal">Sectors I've <span class="gradient-text">worked in</span>.</h2>
+    <div class="sector-list reveal">
+      <div class="sector">🏦 Financial — Bypassed security controls; static &amp; dynamic analysis on banking apps; identified amount manipulation vulnerabilities across Pakistan &amp; Middle East</div>
+      <div class="sector">🏥 Health — Penetrated vaccine web portals; OWASP Top 10 focus; mobile app pentesting across Pakistan &amp; Middle East</div>
+      <div class="sector">⛽ Oil &amp; Gas — Black &amp; Grey Box testing on web, mobile, infrastructure; uncovered critical RCE and DoS vulnerabilities across Pakistan &amp; Middle East</div>
+      <div class="sector">🏭 Industrial Manufacturing — Assessed network devices &amp; servers; SAST &amp; DAST on web and mobile apps across USA, Canada &amp; Middle East</div>
+      <div class="sector">🛒 E-Commerce — Identified IDOR, account takeover, bypassed advanced security measures across Pakistan &amp; Middle East</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TECHNICAL STACK ═══════════ -->
+<section style="background:var(--bg-card);">
+  <div class="wrap">
+    <div class="section-accent reveal"></div>
+    <p class="kicker reveal">Technical Stack</p>
+    <h2 class="h2 reveal">Tools of <span class="gradient-text">the trade</span>.</h2>
+    <div class="tech-grid reveal">
+      <div class="tech-card"><div class="icon">🪲</div><div class="name">BurpSuite Pro</div></div>
+      <div class="tech-card"><div class="icon">💀</div><div class="name">Metasploit</div></div>
+      <div class="tech-card"><div class="icon">🩸</div><div class="name">BloodHound</div></div>
+      <div class="tech-card"><div class="icon">🔓</div><div class="name">Mimikatz</div></div>
+      <div class="tech-card"><div class="icon">📱</div><div class="name">Frida</div></div>
+      <div class="tech-card"><div class="icon">☁️</div><div class="name">AWS Security</div></div>
+      <div class="tech-card"><div class="icon">🗺️</div><div class="name">Nmap</div></div>
+      <div class="tech-card"><div class="icon">🛡️</div><div class="name">Nessus</div></div>
+      <div class="tech-card"><div class="icon">💉</div><div class="name">SQLMap</div></div>
+      <div class="tech-card"><div class="icon">🔍</div><div class="name">Shodan</div></div>
+      <div class="tech-card"><div class="icon">📡</div><div class="name">Impacket</div></div>
+      <div class="tech-card"><div class="icon">🐳</div><div class="name">Docker</div></div>
+    </div>
+    <div class="skills-row reveal">
+      <span class="pill">Python</span><span class="pill">Bash</span><span class="pill">PowerShell</span>
+      <span class="pill">Kali Linux</span><span class="pill">Red Teaming</span><span class="pill">Purple Team</span>
+      <span class="pill">OSINT</span><span class="pill">CTF</span><span class="pill">Wireshark</span>
+      <span class="pill">DevSecOps</span><span class="pill">jadx</span><span class="pill">apktool</span>
     </div>
   </div>
 </section>
@@ -402,36 +546,36 @@ footer {
 <!-- ═══════════ CERTIFICATIONS ═══════════ -->
 <section id="certs">
   <div class="wrap">
-    <div class="section-accent"></div>
-    <p class="kicker">Credentials</p>
-    <h2 class="h2">Industry <span class="gradient-text">certifications</span>.</h2>
+    <div class="section-accent reveal"></div>
+    <p class="kicker reveal">Credentials</p>
+    <h2 class="h2 reveal">Industry <span class="gradient-text">certifications</span>.</h2>
     <div class="grid">
-      <div class="card">
+      <div class="card reveal reveal-delay-1">
         <div class="card-icon">🎯</div>
         <h3>OSCP+</h3>
         <p>Offensive Security Certified Professional (plus). Advanced hands-on penetration testing with AD attack specialisation. 24-hour practical examination.</p>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-1">
         <div class="card-icon">⚔️</div>
         <h3>CRTP</h3>
         <p>Certified Red Team Professional. Active Directory attack paths, trust abuse, lateral movement, and defence evasion. Hands-on red team lab.</p>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-2">
         <div class="card-icon">🛡️</div>
         <h3>CEH</h3>
         <p>Certified Ethical Hacker (EC-Council). Foundational methodology across all major offensive security domains.</p>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-2">
         <div class="card-icon">📋</div>
         <h3>CAP</h3>
         <p>Certified AppSec Practitioner. Web application and API security assessment with a practical, hands-on approach.</p>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-3">
         <div class="card-icon">🌐</div>
         <h3>CNSS</h3>
         <p>Certified Network Security Specialist. Network defence, protocols, firewall configuration, and infrastructure security.</p>
       </div>
-      <div class="card">
+      <div class="card reveal reveal-delay-3">
         <div class="card-icon">💻</div>
         <h3>Practical Ethical Hacking</h3>
         <p>TCM Security. AD attacks, web app pentesting, privilege escalation, and professional reporting.</p>
@@ -441,17 +585,24 @@ footer {
 </section>
 
 <!-- ═══════════ EDUCATION ═══════════ -->
-<section>
+<section style="background:var(--bg-card);">
   <div class="wrap">
-    <div class="section-accent"></div>
-    <p class="kicker">Education</p>
-    <h2 class="h2">Academic <span class="gradient-text">background</span>.</h2>
-    <div class="tl">
-      <div class="tl-item">
-        <div class="tl-date">2016 – 2020</div>
-        <div class="tl-role">B.Sc. Software Engineering</div>
-        <div class="tl-company">COMSATS University</div>
-        <div class="tl-desc">Final Project: eCom &amp; eLearning Platform — Integrated B2C e-commerce and eLearning using React, Node.js, and MySQL.</div>
+    <div class="section-accent reveal"></div>
+    <p class="kicker reveal">Education</p>
+    <h2 class="h2 reveal">Academic <span class="gradient-text">background</span>.</h2>
+    <div class="accordion-tl reveal">
+      <div class="accordion-item open">
+        <div class="accordion-header">
+          <div class="accordion-header-left">
+            <div class="accordion-date">2016 – 2020</div>
+            <div class="accordion-role">B.Sc. Software Engineering</div>
+            <div class="accordion-company">COMSATS University</div>
+          </div>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-body">
+          <p class="accordion-desc">Final Project: eCom &amp; eLearning Platform — Integrated B2C e-commerce and eLearning using React, Node.js, and MySQL.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -460,10 +611,10 @@ footer {
 <!-- ═══════════ CTA ═══════════ -->
 <section class="cta-section" id="contact-cta">
   <div class="wrap">
-    <div class="cta-content">
+    <div class="cta-content reveal">
       <h3>Ready to secure your infrastructure?</h3>
       <p>Let's discuss your security needs — penetration testing, vulnerability assessment, or red team engagement.</p>
-      <a href="#" class="btn btn-primary" onclick="Cal.ns['30min']('show'); return false;">Book a Call</a>
+      <a href="#" class="btn btn-primary" onclick="Cal.ns['30min']('show'); return false;"><span>Book a Call</span></a>
     </div>
   </div>
 </section>
@@ -471,6 +622,8 @@ footer {
 <footer>
   Shaheer Khalid &nbsp;·&nbsp; Offensive Security Consultant &nbsp;·&nbsp; OSCP+ · CRTP · CEH &nbsp;·&nbsp; Dubai, UAE
 </footer>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
 
 <!-- Cal floating-popup embed -->
 <script type="text/javascript">
@@ -480,6 +633,71 @@ Cal.config = Cal.config || {};
 Cal.config.forwardQueryParams = true;
   Cal.ns["30min"]("floatingButton", {"calLink":"shaheer-khalid/30min","config":{"layout":"month_view","useSlotsViewOnSmallScreen":"true"},"buttonText":"Book a Call"});
   Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<!-- Scroll reveal observer -->
+<script>
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Progress bar animation
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.skill-bar-fill');
+        fills.forEach(fill => {
+          const w = fill.getAttribute('data-width');
+          fill.style.width = w + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.skill-bar-group').forEach(el => barObserver.observe(el));
+})();
+</script>
+
+<!-- Accordion toggle -->
+<script>
+document.querySelectorAll('.accordion-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    item.classList.toggle('open');
+  });
+});
+</script>
+
+<!-- Typewriter effect -->
+<script>
+(function() {
+  const target = document.getElementById('typewriter-target');
+  if (!target) return;
+  const fullText = target.textContent;
+  target.textContent = '';
+  let i = 0;
+  function type() {
+    if (i < fullText.length) {
+      target.textContent += fullText.charAt(i);
+      i++;
+      setTimeout(type, 80 + Math.random() * 40);
+    }
+  }
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      setTimeout(type, 600);
+      obs.disconnect();
+    }
+  }, { threshold: 0.5 });
+  obs.observe(target);
+})();
 </script>
 
 </body>
