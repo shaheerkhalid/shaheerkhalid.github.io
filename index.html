@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shaheer Khalid · Offensive Security & Penetration Testing</title>
 <meta name="description" content="Senior Penetration Tester — 6+ years in offensive security. OSCP+, CRTP. UAE-based.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════ RESET & TOKENS ═══════════════════ */
 :root {
   --bg: #0A0A0A;
-  --bg-elevated: #111111;
+  --bg-elevated: #0d0d0d;
   --bg-card: #0f0f0f;
   --border: #1c1c1c;
   --border-hover: #2a2a2a;
@@ -23,6 +25,7 @@
   --orange: #FF7A00;
   --crimson: #D1001C;
   --gradient: linear-gradient(135deg, #FF7A00 0%, #D1001C 100%);
+  --gradient-hover: linear-gradient(135deg, #D1001C 0%, #FF7A00 100%);
   --gradient-subtle: linear-gradient(135deg, rgba(255,122,0,0.06) 0%, rgba(209,0,28,0.06) 100%);
   --radius: 4px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -42,57 +45,60 @@ body {
 }
 ::selection { background: var(--orange); color: #fff; }
 
-/* ── Animated background glow (Fluid Blobs) ── */
+/* ═══════════════════ BACKGROUND EFFECTS ═══════════════════ */
+
+/* Fluid blobs — ultra-low opacity 3-5% */
 .bg-blob {
   position: fixed; pointer-events: none; z-index: 0;
-  border-radius: 50%; filter: blur(80px);
+  border-radius: 50%; filter: blur(100px);
   will-change: transform;
+  opacity: 0.5;
 }
 .bg-blob-1 {
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(255,122,0,0.10) 0%, rgba(209,0,28,0.06) 40%, transparent 70%);
-  animation: blobMorph1 18s ease-in-out infinite alternate;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(255,122,0,0.04) 0%, transparent 70%);
+  animation: blobMorph1 20s ease-in-out infinite alternate;
 }
 .bg-blob-2 {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(209,0,28,0.09) 0%, rgba(255,122,0,0.05) 40%, transparent 70%);
-  animation: blobMorph2 16s ease-in-out infinite alternate;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(209,0,28,0.035) 0%, transparent 70%);
+  animation: blobMorph2 18s ease-in-out infinite alternate;
 }
 .bg-blob-3 {
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(255,122,0,0.08) 0%, rgba(209,0,28,0.05) 45%, transparent 70%);
-  animation: blobMorph3 20s ease-in-out infinite alternate;
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(255,122,0,0.03) 0%, transparent 70%);
+  animation: blobMorph3 22s ease-in-out infinite alternate;
 }
 @keyframes blobMorph1 {
   0%   { transform: translate(-15vw, -10vh) scale(1); }
-  50%  { transform: translate(10vw, 15vh) scale(1.15); }
+  50%  { transform: translate(10vw, 15vh) scale(1.12); }
   100% { transform: translate(-5vw, 5vh) scale(0.95); }
 }
 @keyframes blobMorph2 {
   0%   { transform: translate(20vw, 10vh) scale(0.9); }
-  50%  { transform: translate(-10vw, -15vh) scale(1.1); }
+  50%  { transform: translate(-12vw, -18vh) scale(1.08); }
   100% { transform: translate(5vw, -5vh) scale(1); }
 }
 @keyframes blobMorph3 {
-  0%   { transform: translate(0vw, 20vh) scale(1.1); }
-  50%  { transform: translate(15vw, -10vh) scale(0.85); }
-  100% { transform: translate(-10vw, -15vh) scale(1.05); }
+  0%   { transform: translate(0vw, 25vh) scale(1.08); }
+  50%  { transform: translate(18vw, -12vh) scale(0.88); }
+  100% { transform: translate(-12vw, -18vh) scale(1.03); }
 }
 
-/* ── Background canvas: matrix + particles + nodes ── */
+/* Background canvas: matrix + particles + nodes */
 #bg-canvas {
   position: fixed; inset: 0; width: 100%; height: 100%;
   z-index: 0; pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.35;
 }
 
-/* ── Layout ── */
+/* ═══════════════════ LAYOUT ═══════════════════ */
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
 section { padding: 6rem 0; position: relative; }
 
-/* ── Typography ── */
+/* ═══════════════════ TYPOGRAPHY ═══════════════════ */
 .h1 { font-family: 'Clash Display', sans-serif; font-size: clamp(3.2rem, 7vw, 6rem); font-weight: 700; letter-spacing: -0.045em; line-height: 0.95; }
-.h2 { font-family: 'Clash Display', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 3rem; }
+.h2 { font-family: 'Clash Display', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 2.5rem; }
 .h3 { font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
 .body { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 480px; }
 .mono { font-family: 'JetBrains Mono', monospace; }
@@ -108,7 +114,7 @@ section { padding: 6rem 0; position: relative; }
   color: var(--orange); margin-bottom: 0.75rem;
 }
 
-/* ── Scroll reveal ── */
+/* ═══════════════════ SCROLL REVEAL ═══════════════════ */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s var(--ease); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay-1 { transition-delay: 0.1s; }
@@ -116,7 +122,7 @@ section { padding: 6rem 0; position: relative; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
-/* ── Typewriter cursor ── */
+/* ═══════════════════ TYPEWRITER ═══════════════════ */
 .typewriter-cursor {
   display: inline-block; width: 3px; height: 1em;
   background: var(--orange); margin-left: 2px;
@@ -125,12 +131,12 @@ section { padding: 6rem 0; position: relative; }
 }
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* ── Nav ── */
+/* ═══════════════════ NAV ═══════════════════ */
 nav {
   position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%);
   z-index: 100; display: flex; align-items: center; gap: 2.5rem;
   padding: 0.55rem 1.75rem;
-  background: rgba(10,10,10,0.85);
+  background: rgba(10,10,10,0.82);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border); border-radius: var(--radius);
 }
@@ -144,10 +150,10 @@ nav .links a {
 }
 nav .links a:hover { color: var(--orange); }
 
-/* ── Hero ── */
+/* ═══════════════════ HERO ═══════════════════ */
 .hero { padding: 8rem 0 5rem; min-height: 90vh; display: flex; align-items: center; position: relative; }
 .hero-grid {
-  display: grid; grid-template-columns: 1fr 0.55fr; gap: 4rem; align-items: center;
+  display: grid; grid-template-columns: 1fr 0.55fr; gap: 5rem; align-items: center;
 }
 .hero-eyebrow {
   font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
@@ -159,25 +165,46 @@ nav .links a:hover { color: var(--orange); }
   max-width: 460px; line-height: 1.65; margin: 1.5rem 0 2rem;
 }
 .hero-cta { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+
+/* ASCII art watermark in hero */
+.hero-ascii {
+  position: absolute; top: 10%; right: 5%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem; line-height: 1.1;
+  color: transparent;
+  background: var(--gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.12;
+  pointer-events: none; user-select: none;
+  white-space: pre;
+  z-index: 0;
+}
+
+/* ═══════════════════ BUTTONS ═══════════════════ */
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.8rem 1.75rem; border-radius: var(--radius);
   font-family: 'Satoshi', sans-serif; font-size: 0.82rem; font-weight: 600;
   text-decoration: none; border: none; cursor: pointer;
-  transition: all 0.15s var(--ease); letter-spacing: 0.01em;
+  transition: all 0.2s var(--ease); letter-spacing: 0.01em;
   position: relative; overflow: hidden;
 }
 .btn-primary {
   background: var(--gradient); color: #fff;
   box-shadow: 0 4px 24px rgba(255,122,0,0.2);
 }
-.btn-primary::after {
+.btn-primary::before {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, #D1001C 0%, #FF7A00 100%);
-  opacity: 0; transition: opacity 0.25s var(--ease);
+  background: var(--gradient-hover);
+  opacity: 0; transition: opacity 0.3s var(--ease);
+  z-index: 0;
 }
-.btn-primary:hover { box-shadow: 0 6px 36px rgba(255,122,0,0.4), inset 0 0 40px rgba(255,122,0,0.1); transform: translateY(-1px); }
-.btn-primary:hover::after { opacity: 1; }
+.btn-primary:hover { 
+  box-shadow: 0 6px 36px rgba(255,122,0,0.4), inset 0 0 60px rgba(255,122,0,0.12);
+  transform: translateY(-1px); 
+}
+.btn-primary:hover::before { opacity: 1; }
 .btn-primary span { position: relative; z-index: 1; }
 .btn-ghost {
   background: transparent; color: var(--text);
@@ -185,7 +212,7 @@ nav .links a:hover { color: var(--orange); }
 }
 .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
 
-/* Portrait container */
+/* ═══════════════════ PORTRAIT ═══════════════════ */
 .portrait-container {
   position: relative; width: 100%; aspect-ratio: 2/3; max-width: 340px;
   justify-self: end;
@@ -195,26 +222,26 @@ nav .links a:hover { color: var(--orange); }
 }
 .portrait-container::after {
   content: ''; position: absolute; inset: -1px;
-  background: var(--gradient); opacity: 0; z-index: -1;
-  transition: opacity 0.3s;
+  background: var(--gradient); opacity: 0; z-index: 1;
+  transition: opacity 0.3s; pointer-events: none;
 }
-.portrait-container:hover::after { opacity: 0.5; }
+.portrait-container:hover::after { opacity: 0.35; }
 .portrait-inner {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   background: var(--gradient-subtle);
 }
 
-/* ── Stats row ── */
+/* ═══════════════════ STATS ROW ═══════════════════ */
 .stats-row { display: flex; gap: 2.5rem; margin-top: 2.5rem; }
 .stat { text-align: left; }
-.stat-num { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-num { font-family: 'Clash Display', sans-serif; font-size: 1.8rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.15rem; }
 
-/* ── Section accent ── */
+/* ═══════════════════ SECTION ACCENT ═══════════════════ */
 .section-accent { width: 40px; height: 2px; background: var(--gradient); margin-bottom: 1.5rem; }
 
-/* ── Cards (competencies + certs) ── */
+/* ═══════════════════ CARDS (COMPETENCIES + CERTS) ═══════════════════ */
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--border); }
 .grid > * { background: var(--bg); }
 .card {
@@ -235,72 +262,58 @@ nav .links a:hover { color: var(--orange); }
 }
 .tag.accent { background: var(--gradient-subtle); border-color: rgba(255,122,0,0.15); color: var(--orange); }
 
-/* ── Progress bars ── */
+/* ═══════════════════ SKILL BARS ═══════════════════ */
 .skill-bar-group { display: flex; flex-direction: column; gap: 1.25rem; max-width: 600px; }
 .skill-bar-item { display: flex; flex-direction: column; gap: 0.35rem; }
-.skill-bar-label {
-  display: flex; justify-content: space-between;
-  font-size: 0.78rem; font-weight: 500;
-}
-.skill-bar-label span:last-child {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange);
-}
-.skill-bar-track {
-  width: 100%; height: 3px; background: var(--border);
-  border-radius: 2px; overflow: hidden;
-}
-.skill-bar-fill {
-  height: 100%; background: var(--gradient);
-  border-radius: 2px; width: 0;
-  transition: width 1.2s var(--ease);
-}
+.skill-bar-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 500; }
+.skill-bar-label span:last-child { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange); }
+.skill-bar-track { width: 100%; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.skill-bar-fill { height: 100%; background: var(--gradient); border-radius: 2px; width: 0; transition: width 1.2s var(--ease); }
 
-/* ── Accordion Timeline ── */
-.accordion-tl { max-width: 680px; }
-.accordion-item { border-bottom: 1px solid var(--border); }
-.accordion-header {
-  display: flex; justify-content: space-between; align-items: baseline;
-  padding: 1.25rem 0; cursor: pointer; user-select: none;
-  transition: color 0.15s;
+/* ═══════════════════ VERTICAL TIMELINE (Security Log) ═══════════════════ */
+.timeline { max-width: 680px; position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
 }
-.accordion-header:hover { color: var(--orange); }
-.accordion-header-left { display: flex; flex-direction: column; gap: 0.15rem; }
-.accordion-date { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange); }
-.accordion-role { font-size: 0.95rem; font-weight: 600; }
-.accordion-company { font-size: 0.8rem; color: var(--text-secondary); }
-.accordion-toggle {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
-  color: var(--text-muted); transition: transform 0.3s var(--ease);
+.timeline-item {
+  position: relative; padding-bottom: 2.5rem;
 }
-.accordion-item.open .accordion-toggle { transform: rotate(45deg); }
-.accordion-body {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.4s var(--ease), padding 0.4s var(--ease);
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -2rem; top: 0.35rem;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gradient);
+  transform: translateX(-3.5px);
+  box-shadow: 0 0 12px rgba(255,122,0,0.3);
 }
-.accordion-item.open .accordion-body { max-height: 300px; padding-bottom: 1.25rem; }
-.accordion-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+.timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--orange); margin-bottom: 0.2rem; }
+.timeline-role { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.timeline-company { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.timeline-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
 
-/* ── Skills row ── */
-.skills-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2rem; }
-.pill {
-  padding: 0.45rem 0.9rem; border-radius: var(--radius);
-  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-  color: var(--text-secondary);
-  background: var(--bg-card); border: 1px solid var(--border);
-  transition: all 0.15s var(--ease); cursor: default;
+/* ═══════════════════ PORTFOLIO CARDS ═══════════════════ */
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+.portfolio-grid > * { background: var(--bg); }
+.portfolio-card {
+  padding: 2rem;
+  transition: background 0.15s var(--ease), transform 0.15s var(--ease);
+  position: relative; overflow: hidden;
 }
-.pill:hover { border-color: var(--orange); color: var(--text); }
-
-/* ── Sector list ── */
-.sector-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.sector {
-  padding: 0.55rem 1rem; border: 1px solid var(--border);
-  font-size: 0.78rem; font-weight: 500; color: var(--text-secondary);
-  background: var(--bg-card); transition: all 0.15s var(--ease);
+.portfolio-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--gradient);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease);
 }
-.sector:hover { border-color: var(--orange); transform: translateY(-1px); }
+.portfolio-card:hover { background: var(--bg-card); transform: translateY(-2px); }
+.portfolio-card:hover::before { transform: scaleX(1); }
+.portfolio-card .sector-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+.portfolio-card h3 { font-family: 'Clash Display', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.portfolio-card p { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.7; }
+.portfolio-card .regions { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
 
-/* ── Tech stack icons ── */
+/* ═══════════════════ TECH STACK ═══════════════════ */
 .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1px; background: var(--border); }
 .tech-grid > * { background: var(--bg); }
 .tech-card {
@@ -311,7 +324,18 @@ nav .links a:hover { color: var(--orange); }
 .tech-card .icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
 .tech-card .name { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500; color: var(--text-secondary); }
 
-/* ── CTA Banner ── */
+/* ═══════════════════ PILLS ═══════════════════ */
+.skills-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2rem; }
+.pill {
+  padding: 0.45rem 0.9rem; border-radius: var(--radius);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  color: var(--text-secondary);
+  background: var(--bg-card); border: 1px solid var(--border);
+  transition: all 0.15s var(--ease); cursor: default;
+}
+.pill:hover { border-color: var(--orange); color: var(--text); }
+
+/* ═══════════════════ CTA BANNER ═══════════════════ */
 .cta-section { position: relative; }
 .cta-section::before {
   content: ''; position: absolute; inset: 0;
@@ -321,40 +345,45 @@ nav .links a:hover { color: var(--orange); }
 .cta-content h3 { font-family: 'Clash Display', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; }
 .cta-content p { color: var(--text-secondary); max-width: 440px; margin: 0 auto 1.5rem; font-size: 0.88rem; }
 
-/* ── Footer ── */
+/* ═══════════════════ FOOTER ═══════════════════ */
 footer {
   text-align: center; padding: 3rem 2rem;
   font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
   color: var(--text-muted); border-top: 1px solid var(--border);
 }
 
-/* ── Responsive ── */
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
   .portrait-container { max-width: 260px; justify-self: start; }
   .hero { min-height: auto; padding: 7rem 0 4rem; }
   .tech-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+  .hero-ascii { display: none; }
 }
 @media (max-width: 768px) {
   .h1 { font-size: 2.4rem; }
   .h2 { font-size: 1.7rem; margin-bottom: 2rem; }
-  .grid { grid-template-columns: 1fr; }
+  .grid, .portfolio-grid { grid-template-columns: 1fr; }
   nav { gap: 1.25rem; padding: 0.5rem 1.25rem; }
   nav .links { gap: 1rem; }
   nav .links a { font-size: 0.65rem; }
   .wrap { padding: 0 1.25rem; }
   .stats-row { gap: 1.5rem; flex-wrap: wrap; }
   .portrait-container { max-width: 220px; }
+  .timeline { padding-left: 1.5rem; }
+  .timeline-dot { left: -1.5rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- Background effects -->
 <div class="bg-blob bg-blob-1"></div>
 <div class="bg-blob bg-blob-2"></div>
 <div class="bg-blob bg-blob-3"></div>
 <canvas id="bg-canvas"></canvas>
 
+<!-- Navigation -->
 <nav>
   <a href="#home" class="nav-brand">SK<span>.</span></a>
   <div class="links">
@@ -366,15 +395,19 @@ footer {
   </div>
 </nav>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero" id="home">
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-left">
         <p class="hero-eyebrow reveal">Offensive Security &amp; Penetration Testing</p>
-        <h1 class="h1 hero-title reveal reveal-delay-1">Shaheer<br><span class="gradient-text" id="typewriter-target">Khalid</span><span class="typewriter-cursor"></span></h1>
+        <h1 class="h1 hero-title reveal reveal-delay-1">
+          Shaheer<br>
+          <span class="gradient-text" id="typewriter-target">Khalid</span>
+          <span class="typewriter-cursor"></span>
+        </h1>
         <p class="hero-tagline reveal reveal-delay-2">
-          Senior Penetration Tester with 6+ years of hands-on offensive security — red teaming, vulnerability assessment, and adversary simulation across enterprise environments.
+          Senior Penetration Tester with 6+ years of hands-on offensive security — red teaming, vulnerability assessment, and adversary simulation across enterprise environments in the Middle East.
         </p>
         <div class="hero-cta reveal reveal-delay-3">
           <a href="#" class="btn btn-primary" onclick="Cal.ns['30min']('show'); return false;"><span>Book a Call</span></a>
@@ -394,9 +427,31 @@ footer {
       </div>
     </div>
   </div>
+
+  <!-- ASCII Art Watermark -->
+  <div class="hero-ascii" aria-hidden="true">
+    ███████╗ ██████╗ ███╗   ██╗███████╗
+    ██╔════╝██╔═══██╗████╗  ██║██╔════╝
+    ███████╗██║   ██║██╔██╗ ██║█████╗  
+    ╚════██║██║   ██║██║╚██╗██║██╔══╝  
+    ███████║╚██████╔╝██║ ╚████║███████╗
+    ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+                                      
+    ┌─────────────────────────────────┐
+    │  [*] SCAN  ████████████  100%   │
+    │  [+] HOST  ██████ active       │
+    │  [!] PORT  ███ OPEN 22,80,443  │
+    │  [~] AUTH  ███████████ try...  │
+    │  [█] ROOT  ██████████████████  │
+    └─────────────────────────────────┘
+        ╱|、
+       (˚ˎ 。7 
+        |、˜〵          
+       じしˍ,)ノ
+  </div>
 </section>
 
-<!-- ═══════════ CORE COMPETENCIES ═══════════ -->
+<!-- ═══════════════ CORE COMPETENCIES ═══════════════ -->
 <section id="competencies">
   <div class="wrap">
     <div class="section-accent reveal"></div>
@@ -406,7 +461,7 @@ footer {
       <div class="card reveal reveal-delay-1">
         <div class="card-icon">🌐</div>
         <h3>Web Application Pentesting</h3>
-        <p>OWASP Top 10, API security, SAST &amp; DAST, manual testing. BurpSuite Pro, SQLMap, Acunetix, Nikto, AppScan, Shodan, source code static analysis.</p>
+        <p>OWASP Top 10, API security, SAST & DAST, manual testing. BurpSuite Pro, SQLMap, Acunetix, Nikto, AppScan, Shodan, source code static analysis.</p>
         <div class="card-tags"><span class="tag accent">BurpSuite</span><span class="tag">SQLMap</span><span class="tag">Acunetix</span></div>
       </div>
       <div class="card reveal reveal-delay-1">
@@ -467,86 +522,93 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════ EXPERIENCE (Accordion) ═══════════ -->
+<!-- ═══════════════ EXPERIENCE (Vertical Timeline) ═══════════════ -->
 <section id="experience" style="background:var(--bg-card);">
   <div class="wrap">
     <div class="section-accent reveal"></div>
     <p class="kicker reveal">Experience</p>
     <h2 class="h2 reveal">Security <span class="gradient-text">log</span>.</h2>
-    <div class="accordion-tl reveal">
-      <div class="accordion-item open">
-        <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-date">May 2025 – Present</div>
-            <div class="accordion-role">Penetration Tester · Security Consultant</div>
-            <div class="accordion-company">Malcrove EMEA Technology L.L.C., Dubai</div>
-          </div>
-          <span class="accordion-toggle">+</span>
-        </div>
-        <div class="accordion-body">
-          <p class="accordion-desc">Lead penetration testing engagements across web, mobile, and infrastructure. Establish scope, plan vulnerability assessments, identify complex vulnerabilities through chained attack flows, and deliver comprehensive reports for technical and executive audiences. Contribute to internal R&D of proprietary tools and training materials.</p>
-        </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">May 2025 – Present</div>
+        <div class="timeline-role">Penetration Tester · Security Consultant</div>
+        <div class="timeline-company">Malcrove EMEA Technology L.L.C., Dubai</div>
+        <div class="timeline-desc">Lead penetration testing engagements across web, mobile, and infrastructure. Establish scope, plan vulnerability assessments, identify complex vulnerabilities through chained attack flows, and deliver comprehensive reports for technical and executive audiences. Contribute to internal R&D of proprietary tools and training materials.</div>
       </div>
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-date">Nov 2022 – Aug 2024</div>
-            <div class="accordion-role">Cyber Security Analyst · Security Engineer</div>
-            <div class="accordion-company">B&S World Supply, Dubai</div>
-          </div>
-          <span class="accordion-toggle">+</span>
-        </div>
-        <div class="accordion-body">
-          <p class="accordion-desc">Conducted security tests on internal and external systems, networks, and applications. Developed policies aligned with NIST, PCI DSS, and ISO 27001. Collaborated with IT Risk Analysts, Threat Analysts, and Security Officers to identify risks and propose solutions.</p>
-        </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Nov 2022 – Aug 2024</div>
+        <div class="timeline-role">Cyber Security Analyst · Security Engineer</div>
+        <div class="timeline-company">B&S World Supply, Dubai</div>
+        <div class="timeline-desc">Conducted security tests on internal and external systems, networks, and applications. Developed policies aligned with NIST, PCI DSS, and ISO 27001. Collaborated with IT Risk Analysts, Threat Analysts, and Security Officers to identify risks and propose solutions.</div>
       </div>
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-date">Nov 2021 – Sep 2022</div>
-            <div class="accordion-role">Security Engineer · Penetration Tester</div>
-            <div class="accordion-company">NPCC, Abu Dhabi</div>
-          </div>
-          <span class="accordion-toggle">+</span>
-        </div>
-        <div class="accordion-body">
-          <p class="accordion-desc">Penetration tested web and mobile applications and thick clients. Performed OSINT, participated in purple team exercises, and ran vulnerability management programs including prioritisation.</p>
-        </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Nov 2021 – Sep 2022</div>
+        <div class="timeline-role">Security Engineer · Penetration Tester</div>
+        <div class="timeline-company">NPCC, Abu Dhabi</div>
+        <div class="timeline-desc">Penetration tested web and mobile applications and thick clients. Performed OSINT, participated in purple team exercises, and ran vulnerability management programs including prioritisation.</div>
       </div>
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-date">Aug 2020 – Oct 2021</div>
-            <div class="accordion-role">Security Engineer · Penetration Tester</div>
-            <div class="accordion-company">VaporVM, Lahore, Pakistan</div>
-          </div>
-          <span class="accordion-toggle">+</span>
-        </div>
-        <div class="accordion-body">
-          <p class="accordion-desc">Performed host, network, web, and mobile application penetration tests. Conducted risk assessments for corporate compliance and participated in CTF competitions.</p>
-        </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Aug 2020 – Oct 2021</div>
+        <div class="timeline-role">Security Engineer · Penetration Tester</div>
+        <div class="timeline-company">VaporVM, Lahore, Pakistan</div>
+        <div class="timeline-desc">Performed host, network, web, and mobile application penetration tests. Conducted risk assessments for corporate compliance and participated in CTF competitions.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ THREAT ASSESSMENT PORTFOLIO ═══════════ -->
+<!-- ═══════════════ THREAT ASSESSMENT PORTFOLIO ═══════════════ -->
 <section id="portfolio">
   <div class="wrap">
     <div class="section-accent reveal"></div>
     <p class="kicker reveal">Threat Assessment Portfolio</p>
     <h2 class="h2 reveal">Sectors I've <span class="gradient-text">worked in</span>.</h2>
-    <div class="sector-list reveal">
-      <div class="sector">🏦 Financial — Bypassed security controls; static &amp; dynamic analysis on banking apps; identified amount manipulation vulnerabilities across Pakistan &amp; Middle East</div>
-      <div class="sector">🏥 Health — Penetrated vaccine web portals; OWASP Top 10 focus; mobile app pentesting across Pakistan &amp; Middle East</div>
-      <div class="sector">⛽ Oil &amp; Gas — Black &amp; Grey Box testing on web, mobile, infrastructure; uncovered critical RCE and DoS vulnerabilities across Pakistan &amp; Middle East</div>
-      <div class="sector">🏭 Industrial Manufacturing — Assessed network devices &amp; servers; SAST &amp; DAST on web and mobile apps across USA, Canada &amp; Middle East</div>
-      <div class="sector">🛒 E-Commerce — Identified IDOR, account takeover, bypassed advanced security measures across Pakistan &amp; Middle East</div>
+    <div class="portfolio-grid reveal">
+      <div class="portfolio-card">
+        <div class="sector-icon">🏦</div>
+        <h3>Financial Services</h3>
+        <p>Bypassed advanced security controls on banking applications. Conducted static and dynamic analysis of mobile banking apps. Identified amount manipulation vulnerabilities and transaction integrity flaws.</p>
+        <div class="regions"><span class="tag accent">Pakistan</span><span class="tag">Middle East</span></div>
+      </div>
+      <div class="portfolio-card">
+        <div class="sector-icon">🏥</div>
+        <h3>Healthcare</h3>
+        <p>Penetrated vaccine web portals and patient management systems. Comprehensive OWASP Top 10 assessment with focus on PII exposure, authentication flaws, and API vulnerabilities.</p>
+        <div class="regions"><span class="tag accent">Pakistan</span><span class="tag">Middle East</span></div>
+      </div>
+      <div class="portfolio-card">
+        <div class="sector-icon">⛽</div>
+        <h3>Oil &amp; Gas</h3>
+        <p>Black and Grey Box testing on web, mobile, and critical infrastructure systems. Uncovered critical RCE and Denial of Service vulnerabilities in operational technology environments.</p>
+        <div class="regions"><span class="tag accent">Pakistan</span><span class="tag">Middle East</span></div>
+      </div>
+      <div class="portfolio-card">
+        <div class="sector-icon">🏭</div>
+        <h3>Industrial Manufacturing</h3>
+        <p>Assessed network devices, servers, and industrial control interfaces. Conducted SAST and DAST on web and mobile applications across geographically distributed facilities.</p>
+        <div class="regions"><span class="tag accent">USA</span><span class="tag">Canada</span><span class="tag">Middle East</span></div>
+      </div>
+      <div class="portfolio-card">
+        <div class="sector-icon">🛒</div>
+        <h3>E-Commerce</h3>
+        <p>Identified IDOR vulnerabilities, account takeover paths, and bypassed advanced security measures. Chained multiple low-severity findings into critical-impact exploits.</p>
+        <div class="regions"><span class="tag accent">Pakistan</span><span class="tag">Middle East</span></div>
+      </div>
+      <div class="portfolio-card">
+        <div class="sector-icon">🔴</div>
+        <h3>Red Team Engagements</h3>
+        <p>Full-scope adversary simulation exercises. External reconnaissance, initial access, lateral movement, privilege escalation, and data exfiltration against hardened enterprise targets.</p>
+        <div class="regions"><span class="tag accent">UAE</span><span class="tag">Middle East</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ TECHNICAL STACK ═══════════ -->
+<!-- ═══════════════ TECHNICAL STACK ═══════════════ -->
 <section style="background:var(--bg-card);">
   <div class="wrap">
     <div class="section-accent reveal"></div>
@@ -575,7 +637,7 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════ CERTIFICATIONS ═══════════ -->
+<!-- ═══════════════ CERTIFICATIONS ═══════════════ -->
 <section id="certs">
   <div class="wrap">
     <div class="section-accent reveal"></div>
@@ -616,31 +678,25 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════ EDUCATION ═══════════ -->
+<!-- ═══════════════ EDUCATION ═══════════════ -->
 <section style="background:var(--bg-card);">
   <div class="wrap">
     <div class="section-accent reveal"></div>
     <p class="kicker reveal">Education</p>
     <h2 class="h2 reveal">Academic <span class="gradient-text">background</span>.</h2>
-    <div class="accordion-tl reveal">
-      <div class="accordion-item open">
-        <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-date">2016 – 2020</div>
-            <div class="accordion-role">B.Sc. Software Engineering</div>
-            <div class="accordion-company">COMSATS University</div>
-          </div>
-          <span class="accordion-toggle">+</span>
-        </div>
-        <div class="accordion-body">
-          <p class="accordion-desc">Final Project: eCom &amp; eLearning Platform — Integrated B2C e-commerce and eLearning using React, Node.js, and MySQL.</p>
-        </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2016 – 2020</div>
+        <div class="timeline-role">B.Sc. Software Engineering</div>
+        <div class="timeline-company">COMSATS University</div>
+        <div class="timeline-desc">Final Project: eCom &amp; eLearning Platform — Integrated B2C e-commerce and eLearning using React, Node.js, and MySQL.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
+<!-- ═══════════════ CTA ═══════════════ -->
 <section class="cta-section" id="contact-cta">
   <div class="wrap">
     <div class="cta-content reveal">
@@ -661,7 +717,7 @@ footer {
   Shaheer Khalid &nbsp;·&nbsp; Offensive Security Consultant &nbsp;·&nbsp; OSCP+ · CRTP · CEH &nbsp;·&nbsp; Dubai, UAE
 </footer>
 
-<!-- ═══════════ SCRIPTS ═══════════ -->
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
 
 <!-- Background Animation: Matrix Grid + Particles + Connection Nodes + Mouse Parallax -->
 <script>
@@ -675,9 +731,7 @@ footer {
   const particles = [];
   const PARTICLE_COUNT = 60;
   class Particle {
-    constructor() {
-      this.reset(true);
-    }
+    constructor() { this.reset(true); }
     reset(init) {
       this.x = Math.random() * W;
       this.y = init ? Math.random() * H : -10;
@@ -732,7 +786,6 @@ footer {
     targetMY = e.clientY / window.innerHeight;
   });
 
-  // ── Resize ──
   function resize() {
     W = window.innerWidth;
     H = window.innerHeight;
@@ -774,25 +827,17 @@ footer {
 
   function animate() {
     requestAnimationFrame(animate);
-
-    // Smooth mouse
     mouseX += (targetMX - mouseX) * 0.02;
     mouseY += (targetMY - mouseY) * 0.02;
-
-    // Parallax grid drift
     gridOffset = (mouseX - 0.5) * 4;
 
     ctx.clearRect(0, 0, W, H);
-
-    // Matrix grid
     drawGrid(ctx);
 
-    // Update + draw nodes
     ctx.fillStyle = 'rgba(255,122,0,0.12)';
     nodes.forEach(n => {
       n.x = n.baseX * W + Math.cos(Date.now() * n.speed + n.phase) * n.amp;
       n.y = n.baseY * H + Math.sin(Date.now() * n.speed * 1.3 + n.phase) * n.amp * 0.7;
-      // Mouse parallax
       n.x += (mouseX - 0.5) * 20;
       n.y += (mouseY - 0.5) * 20;
       ctx.beginPath();
@@ -800,17 +845,14 @@ footer {
       ctx.fill();
     });
 
-    // Connections
     drawConnections(ctx);
-
-    // Particles
     particles.forEach(p => { p.update(); p.draw(ctx); });
   }
   animate();
 })();
 </script>
 
-<!-- Cal floating-popup embed -->
+<!-- Cal.com Embed -->
 <script type="text/javascript">
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
 Cal("init", "30min", {origin:"https://app.cal.com"});
@@ -820,27 +862,22 @@ Cal.config.forwardQueryParams = true;
   Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 
-<!-- Scroll reveal observer -->
+<!-- Scroll Reveal Observer -->
 <script>
 (function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Progress bar animation
   const barObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const fills = entry.target.querySelectorAll('.skill-bar-fill');
-        fills.forEach(fill => {
-          const w = fill.getAttribute('data-width');
-          fill.style.width = w + '%';
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(fill => {
+          fill.style.width = fill.getAttribute('data-width') + '%';
         });
       }
     });
@@ -850,17 +887,7 @@ Cal.config.forwardQueryParams = true;
 })();
 </script>
 
-<!-- Accordion toggle -->
-<script>
-document.querySelectorAll('.accordion-header').forEach(header => {
-  header.addEventListener('click', () => {
-    const item = header.parentElement;
-    item.classList.toggle('open');
-  });
-});
-</script>
-
-<!-- Typewriter effect -->
+<!-- Typewriter Effect -->
 <script>
 (function() {
   const target = document.getElementById('typewriter-target');
