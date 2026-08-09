@@ -49,7 +49,7 @@
 /* Document control block — the cover's payload */
 .control {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
   border-block-start: var(--hair) solid var(--rule);
   padding-block-start: var(--space-3);
@@ -58,7 +58,7 @@
   .control { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
 }
 
-.kv { display: grid; grid-template-columns: 1fr; gap: 0; }
+.kv { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
 @media (min-width: 34rem) {
   .kv { grid-template-columns: 8.5rem minmax(0, 1fr); column-gap: var(--space-3); }
 }
@@ -132,7 +132,9 @@
   padding-inline: var(--edge);
   padding-block-end: var(--space-16);
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0,1fr), not 1fr: a bare 1fr track is minmax(auto,1fr) and lets
+     min-content push the grid wider than the viewport. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
 }
 @media (min-width: 60rem) {
@@ -232,7 +234,7 @@
   padding-block: var(--space-8);
   border-block-start: var(--hair) solid var(--rule);
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2);
 }
 .sheet:first-child { border-block-start: 0; }
@@ -271,7 +273,7 @@
 .sheet-foot { display: none; }
 
 /* ── Scope grid ──────────────────────────────────────────────────────*/
-.cols { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
 @media (min-width: 48rem) { .cols { grid-template-columns: repeat(3, 1fr); gap: var(--space-4); } }
 .cols h3 {
   font-family: var(--font-mono);
@@ -291,7 +293,7 @@
   padding-inline-start: var(--space-2);
   position: relative;
 }
-.cols li::before { content: "·"; position: absolute; inset-inline-start: 3px; color: var(--ink-faint); }
+.cols li::before { content: "·"; position: absolute; inset-inline-start: 3px; color: var(--mark); }
 
 /* ── Entries: engagements, history ───────────────────────────────────*/
 .entry { padding-block: var(--space-3); border-block-start: var(--hair) solid var(--rule); }
@@ -354,7 +356,7 @@
   content: "—";
   position: absolute;
   inset-inline-start: 0;
-  color: var(--ink-faint);
+  color: var(--mark);
 }
 /* :not(.sev) so a severity assertion is not overridden by the generic
    emphasis rule — .entry li strong (0,1,2) would otherwise outrank .sev. */
@@ -589,7 +591,7 @@ kbd {
   opacity: .8;
 }
 
-.cta-secondary { display: grid; grid-template-columns: 1fr; gap: var(--space-2); margin-block-end: var(--space-4); }
+.cta-secondary { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); margin-block-end: var(--space-4); }
 @media (min-width: 34rem) { .cta-secondary { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); } }
 .cta-secondary div { border-block-start: var(--hair) solid var(--rule); padding-block-start: var(--space-1); }
 .cta-secondary a { font-size: var(--t-m); text-decoration: none; border-block-end: var(--hair) solid transparent; }

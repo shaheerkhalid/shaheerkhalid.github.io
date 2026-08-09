@@ -11,7 +11,14 @@
   --rule:         #3A3A41;   /* hairlines, table borders */
   --ink:          #ECECEE;   /* body text */
   --ink-muted:    #8E8E96;   /* metadata, footers, sub-labels */
-  --ink-faint:    #63636B;   /* rule labels, disabled, gutter numerals */
+  --ink-faint:    #7E7E87;   /* third text level: TOC rest state, field
+                                labels, unfilled placeholders. Holds
+                                4.61:1 on --surface, so it is safe for
+                                real text at any size. */
+  --mark:         #63636B;   /* decorative marks only -- list bullets, the
+                                em-dash before an entry. Never text: this
+                                is below 4.5:1 by design and nothing a
+                                reader must read is allowed to use it. */
 
   /* ── Signal — each has exactly one job ─────────────────────────────
      --stamp is document furniture: classification markings, revision
@@ -116,7 +123,8 @@
   --rule:         #C9C9CD;
   --ink:          #131315;
   --ink-muted:    #55555C;
-  --ink-faint:    #74747C;
+  --ink-faint:    #66666E;
+  --mark:         #8A8A92;
   --stamp:        #55555C;
   --redact:       #131315;   /* a true black bar, as a marker would leave */
   --critical:     #A3241A;   /* darkened to hold 4.5:1 on light ground */

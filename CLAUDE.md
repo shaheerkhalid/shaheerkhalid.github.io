@@ -11,9 +11,13 @@ A single-page consultant profile for an offensive security consultant, deliberat
 security manager or procurement lead who reads pentest reports all day. The page should read as an
 artifact produced by the profession, not as marketing about it.
 
-The site is live on GitHub Pages at `https://shaheerkhalid.github.io/`. It already exists. This work is
-a **refinement of the existing design, not a redesign**. The concept is correct and is not up for
-reconsideration.
+The site is live on GitHub Pages at `https://shaheerkhalid.github.io/`. It already exists.
+
+**Superseded 2026-08-09.** This began as "a refinement, not a redesign". It became a redesign, at the
+owner's direction. The controlled-document *concept* is unchanged and still not up for
+reconsideration — what changed is that the page no longer *simulates* a document on screen. The
+paper simulation (cream sheets on a dark desk, staple, punch holes, per-sheet rotation, drop
+shadows) is gone. Page-ness now exists only in print, where it is real.
 
 ---
 
@@ -22,7 +26,7 @@ reconsideration.
 | Rule | Detail |
 | --- | --- |
 | **Zero dependencies** | No React, no Tailwind, no build step, no bundler, no npm. Hand-written HTML, CSS and vanilla JS only. |
-| **Zero third-party requests** | No Google Fonts CDN, no analytics, no trackers, no external scripts, no external images. Everything self-hosted. This is a security consultant's site; a single outbound request to a CDN undermines it. |
+| **Zero third-party requests** | No Google Fonts CDN, no analytics, no trackers, no external images. Everything self-hosted. This is a security consultant's site; a single outbound request to a CDN undermines it. **One documented exception:** the cal.com booking embed (`app.cal.com`), kept at the owner's explicit direction. It is the only host the CSP admits, its init lives in `assets/js/cal.js` rather than inline, and the booking anchor works as a plain link without it. Nothing else may be added to this list without the same explicit call. |
 | **Content is authoritative** | Never invent, embellish or "improve" a factual claim — client names, CVSS scores, dates, metrics, employers, certifications. Migrate copy verbatim. |
 | **Placeholders are explicit** | Where new content is needed and you don't have it, insert `TODO(shaheer): <what's needed>` in the markup as an HTML comment and list it in the final summary. Never fill the gap with plausible-sounding text. |
 | **Print is a first-class output** | The page says "Uncontrolled when printed". `Cmd+P` must produce a genuinely clean, paginated document. This is a feature, not an afterthought. |
@@ -63,39 +67,27 @@ stylesheet without asking.
 Define these in `tokens.css` and **derive every colour and size from them**. No hard-coded hex values
 or px sizes anywhere else in the codebase.
 
-```css
-:root {
-  /* Surface — screen mode (default) */
-  --paper:        #17150F;   /* warm near-black, existing brand value */
-  --surface:      #1E1B15;   /* raised sheet */
-  --rule:         #2E2A22;   /* hairlines, table borders */
-  --ink:          #E8E3D8;   /* warm bone */
-  --ink-muted:    #9A9285;   /* metadata, sheet footers */
-  --ink-faint:    #6B6559;   /* rule labels, disabled */
+**Superseded 2026-08-09 — the palette is now achromatic.** `tokens.css` is the authority; the block
+below records what changed and why, so the reasoning is not lost.
 
-  /* Signal — two colours, each with one job */
-  --stamp:        #7A4E86;   /* rubber-stamp violet: RECEIVED, CONFIDENTIAL, Rev. marks, redaction seals */
-  --critical:     #C0392B;   /* severity ONLY, CVSS >= 7.0. Never decorative. */
-  --closed:       #6E7F5C;   /* "retested, closed" state */
+The warm near-black ground and the rubber-stamp violet are gone. `--critical` is the only chromatic
+event on the page, with `--closed` the sole exception on a retested marker. Document furniture
+(`--stamp`) kept its name and its job but lost its hue: furniture must never compete with a severity.
 
-  /* Type */
-  --font-body:    "Source Serif 4", Georgia, serif;
-  --font-mono:    "Commit Mono", "JetBrains Mono", ui-monospace, monospace;
+Three values differ from what a naive port would produce, each because it was **measured**:
 
-  /* Grid */
-  --baseline:     8px;
-  --measure:      70ch;
-}
+| Token | Was | Is | Why |
+| --- | --- | --- | --- |
+| `--critical` (screen) | `#C0392B` | `#D65446` | `#C0392B` reads **3.62:1** on the dark ground and fails AA |
+| `--closed` (screen) | `#6E7F5C` | `#738560` | **4.29:1** on `--surface`, likewise failing |
+| `--ink-faint` (screen) | `#63636B` | `#7E7E87` | was used for real text (TOC rest state, field labels) at **3.30:1** |
 
-[data-mode="paper"] {
-  --paper:     #E9E9E4;   /* photocopied bond, cool-neutral — NOT cream */
-  --surface:   #F2F2EE;
-  --rule:      #C9C9C2;
-  --ink:       #1A1A16;
-  --ink-muted: #5C5C54;
-  --ink-faint: #8A8A82;
-}
-```
+A fourth token was added: `--mark`, carrying the old faint value, for decorative marks only — list
+bullets and the em-dash before an entry. It sits below 4.5:1 **by design**, and nothing a reader
+must read is permitted to use it. If you find yourself reaching for `--mark` on text, use
+`--ink-faint`.
+
+Measured result: 303 rendered text elements, **zero AA failures**, in both modes.
 
 **Colour discipline — the rule that matters:** `--stamp` is for document furniture (classification
 markings, revision marks, the RECEIVED stamp). `--critical` appears *only* where a severity is being
