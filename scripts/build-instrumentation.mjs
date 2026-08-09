@@ -52,7 +52,7 @@ function fail(source, reason, detail) {
 
 /* An HTTP status a reader can act on, without the response body. */
 function httpReason(status) {
-  if (status === 401) return "credential rejected — an Admin API key is required";
+  if (status === 401) return "an Admin API key is required";
   if (status === 403) return "credential lacks the required scope";
   if (status === 404) return "endpoint not found";
   if (status === 429) return "rate limited";
