@@ -1,0 +1,132 @@
+/* tokens.css — custom properties only.
+   No selectors beyond :root and [data-mode]. Every colour and size in this
+   codebase derives from here; no hex literal or px size appears anywhere else. */
+
+:root {
+  /* ── Surface — screen mode (default) ────────────────────────────────
+     Achromatic by design. The only chromatic events on the page are a
+     severity assertion and a closed state; everything else is neutral. */
+  --paper:        #0B0B0C;   /* page ground */
+  --surface:      #131315;   /* raised block: tables, chips, dialog */
+  --rule:         #3A3A41;   /* hairlines, table borders */
+  --ink:          #ECECEE;   /* body text */
+  --ink-muted:    #8E8E96;   /* metadata, footers, sub-labels */
+  --ink-faint:    #7E7E87;   /* third text level: TOC rest state, field
+                                labels, unfilled placeholders. Holds
+                                4.61:1 on --surface, so it is safe for
+                                real text at any size. */
+  --mark:         #63636B;   /* decorative marks only -- list bullets, the
+                                em-dash before an entry. Never text: this
+                                is below 4.5:1 by design and nothing a
+                                reader must read is allowed to use it. */
+
+  /* ── Signal — each has exactly one job ─────────────────────────────
+     --stamp is document furniture: classification markings, revision
+     marks, the RECEIVED stamp. It is achromatic on purpose: furniture
+     must not compete with a severity.
+     --critical is a severity assertion and nothing else. Never decorative.
+     --closed is a retested/closed state and nothing else. */
+  --stamp:        #8E8E96;
+  --redact:       #2E2E34;   /* solid blackout bar */
+  --critical:     #D65446;   /* CVSS >= 7.0 ONLY. Lightened from the #C0392B
+                                in CLAUDE.md §4, which measures 3.62:1 on this
+                                ground and fails AA. This value holds 4.61:1
+                                against --surface, the harder of the two. */
+  --closed:       #738560;   /* likewise lifted from #6E7F5C (4.29:1) */
+
+  /* ── Type ──────────────────────────────────────────────────────────
+     Source Serif 4 reads as audit report. Commit Mono carries every
+     piece of document furniture: refs, sheet numbers, labels, dates,
+     CVSS vectors, tabular figures. */
+  --font-body:    "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono:    "Commit Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Scale: 1.2 ratio off a 16px root.
+     CLAUDE.md asks for sizes as multiples of --baseline; that is not
+     satisfiable on a 1.2 ratio (8 -> 9.6 -> 11.52 ...), so the ratio
+     governs font size and the 8px grid governs line-height and spacing. */
+  --t-3xs:        0.579rem;  /*  9.26px — sheet furniture */
+  --t-2xs:        0.694rem;  /* 11.11px — mono labels, footers */
+  --t-xs:         0.833rem;  /* 13.33px — table cells, list items */
+  --t-s:          0.926rem;  /* 14.81px — dense prose */
+  --t-base:       1rem;      /* 16px    — body */
+  --t-m:          1.2rem;    /* 19.2px  — lead paragraph */
+  --t-l:          1.44rem;   /* 23.04px — entry titles */
+  --t-xl:         1.728rem;  /* 27.65px — section headings */
+  --t-2xl:        2.986rem;  /* 47.78px — cover name */
+  --t-3xl:        4.3rem;    /* 68.8px  — cover name, wide viewports */
+
+  /* Tracking — three steps, down from eleven in the baseline */
+  --track-tight:  -0.02em;   /* large headline */
+  --track-normal: 0;
+  --track-wide:   0.16em;    /* mono uppercase labels */
+
+  /* ── Grid ──────────────────────────────────────────────────────────
+     Every vertical measurement is a multiple of --baseline. */
+  --baseline:     8px;
+  --measure:      70ch;
+  --lh-body:      1.5;       /* 24px on 16px — 3 baselines */
+  --lh-tight:     1.25;
+  --lh-flat:      1;
+
+  --space-1:      calc(var(--baseline) * 1);   /*  8px */
+  --space-2:      calc(var(--baseline) * 2);   /* 16px */
+  --space-3:      calc(var(--baseline) * 3);   /* 24px */
+  --space-4:      calc(var(--baseline) * 4);   /* 32px */
+  --space-6:      calc(var(--baseline) * 6);   /* 48px */
+  --space-8:      calc(var(--baseline) * 8);   /* 64px */
+  --space-12:     calc(var(--baseline) * 12);  /* 96px */
+  --space-16:     calc(var(--baseline) * 16);  /* 128px */
+
+  /* ── Layout ────────────────────────────────────────────────────────*/
+  --rail-w:       13rem;     /* left rail on wide viewports */
+  --gutter-w:     4rem;      /* section-number gutter inside a sheet */
+  --hair:         1px;
+  --edge:         var(--space-4);
+
+  --z-rail:       10;
+  --z-footer:     20;
+  --z-skip:       40;
+
+  --dur:          160ms;
+  --ease:         cubic-bezier(.2, .8, .2, 1);
+}
+
+/* ── Paper mode ───────────────────────────────────────────────────────
+   Cool-neutral photocopied bond, not cream. This is also what print
+   forces, regardless of the mode selected on screen. */
+/* ── Print ────────────────────────────────────────────────────────────
+   Print forces its own values regardless of the mode chosen on screen:
+   a dark ground would flood the page with toner. Pure white ground and
+   black ink, with the two signal colours darkened for laser output.
+   These live here so every hex literal in the codebase stays in one file. */
+@media print {
+  :root,
+  [data-mode="screen"],
+  [data-mode="paper"] {
+    --paper:        #FFFFFF;
+    --surface:      #FFFFFF;
+    --rule:         #9A9AA2;
+    --ink:          #000000;
+    --ink-muted:    #33333A;
+    --ink-faint:    #55555C;
+    --stamp:        #33333A;
+    --redact:       #000000;
+    --critical:     #8C1D14;
+    --closed:       #3D4A30;
+  }
+}
+
+[data-mode="paper"] {
+  --paper:        #E8E8E9;
+  --surface:      #F4F4F5;
+  --rule:         #C9C9CD;
+  --ink:          #131315;
+  --ink-muted:    #55555C;
+  --ink-faint:    #66666E;
+  --mark:         #8A8A92;
+  --stamp:        #55555C;
+  --redact:       #131315;   /* a true black bar, as a marker would leave */
+  --critical:     #A3241A;   /* darkened to hold 4.5:1 on light ground */
+  --closed:       #4A5A3B;
+}

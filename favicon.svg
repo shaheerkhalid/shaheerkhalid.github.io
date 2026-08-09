@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="SK / CP-01">
+  <!-- Stamp mark: SK monogram inside a struck box. Achromatic, matching
+       the document's palette. Legible down to 16px, which rules out the
+       rotation the on-page stamp carries. -->
+  <rect width="32" height="32" fill="#0B0B0C"/>
+  <rect x="2.5" y="6.5" width="27" height="19" fill="none" stroke="#8E8E96" stroke-width="2"/>
+  <text x="16" y="20.4" text-anchor="middle"
+        font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="12" font-weight="700" letter-spacing="0.5" fill="#ECECEE">SK</text>
+</svg>
