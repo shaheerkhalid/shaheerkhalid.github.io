@@ -72,8 +72,8 @@
   --space-16:     calc(var(--baseline) * 16);  /* 128px */
 
   /* ── Layout ────────────────────────────────────────────────────────*/
-  --rail-w:       15rem;     /* left rail on wide viewports */
-  --gutter-w:     8.5rem;    /* mono label gutter inside a section */
+  --rail-w:       13rem;     /* left rail on wide viewports */
+  --gutter-w:     4rem;      /* section-number gutter inside a sheet */
   --hair:         1px;
   --edge:         var(--space-4);
 
@@ -88,6 +88,28 @@
 /* ── Paper mode ───────────────────────────────────────────────────────
    Cool-neutral photocopied bond, not cream. This is also what print
    forces, regardless of the mode selected on screen. */
+/* ── Print ────────────────────────────────────────────────────────────
+   Print forces its own values regardless of the mode chosen on screen:
+   a dark ground would flood the page with toner. Pure white ground and
+   black ink, with the two signal colours darkened for laser output.
+   These live here so every hex literal in the codebase stays in one file. */
+@media print {
+  :root,
+  [data-mode="screen"],
+  [data-mode="paper"] {
+    --paper:        #FFFFFF;
+    --surface:      #FFFFFF;
+    --rule:         #9A9AA2;
+    --ink:          #000000;
+    --ink-muted:    #33333A;
+    --ink-faint:    #55555C;
+    --stamp:        #33333A;
+    --redact:       #000000;
+    --critical:     #8C1D14;
+    --closed:       #3D4A30;
+  }
+}
+
 [data-mode="paper"] {
   --paper:        #E8E8E9;
   --surface:      #F4F4F5;

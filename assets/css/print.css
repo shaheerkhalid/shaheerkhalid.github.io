@@ -1,0 +1,206 @@
+/* print.css — the document as a document.
+
+   The page says "Uncontrolled when printed", so Cmd+P has to produce
+   something worth sending. Every sheet starts a new page, the ground is
+   forced light regardless of the mode chosen on screen, and the screen
+   furniture (rail, footer bar, toggle, skip link) is removed. */
+
+@page {
+  size: A4;
+  margin: 20mm 18mm;
+}
+
+@media print {
+
+  /* Print token values are forced in tokens.css, so that every hex
+     literal in the codebase stays in that one file. */
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 10pt;
+    line-height: 1.45;
+  }
+
+  /* ── Remove screen-only furniture ──────────────────────────────────*/
+  .rail,
+  .doc-foot,
+  .skip,
+  .shortcuts,
+  .controls,
+  .rail-progress {
+    display: none !important;
+  }
+
+  /* ── Page geometry ─────────────────────────────────────────────────*/
+  .doc {
+    display: block;
+    max-inline-size: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cover {
+    min-block-size: auto;
+    max-inline-size: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    break-after: page;
+  }
+  .cover-title { margin-block-start: 12mm; }
+  .cover h1 { font-size: 30pt; }
+  .control { margin-block-start: 12mm; break-inside: avoid; }
+  .contents { margin-block-start: 10mm; break-inside: avoid; }
+
+  .stamp {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    animation: none;
+    opacity: 1;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Each sheet is a page. */
+  .sheet {
+    break-before: page;
+    break-inside: auto;
+    padding-block: 0;
+    border-block-start: 0;
+    display: block;
+  }
+  .sheet:first-child { break-before: auto; }
+
+  /* A heading must never be the last thing on a page. */
+  .sheet-head {
+    break-after: avoid;
+    break-inside: avoid;
+    border-block-end: 0.4pt solid var(--rule);
+    padding-block-end: 2mm;
+    margin-block-end: 4mm;
+  }
+  h2, h3 { break-after: avoid; break-inside: avoid; }
+  h2 { font-size: 15pt; }
+  h3 { font-size: 11pt; }
+  p, li { orphans: 3; widows: 3; }
+
+  /* Sheet numbering: the screen renders it in a gutter, print puts it
+     inline with the heading where a report would carry it. */
+  .sheet { counter-increment: sheet; }
+  .sheet-num { display: none; }
+  .sheet-head h2::before {
+    content: counter(sheet, decimal-leading-zero) " — ";
+    font-family: var(--font-mono);
+    color: var(--ink-faint);
+  }
+
+  /* ── Running footer ────────────────────────────────────────────────
+     @page margin boxes (@bottom-left and friends) are still not
+     implemented in Chrome or Safari, so the per-sheet footer element is
+     what actually prints. It is display:none on screen and restored here. */
+  .sheet-foot {
+    display: block;
+    margin-block-start: 6mm;
+    padding-block-start: 1.5mm;
+    border-block-start: 0.4pt solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    break-before: avoid;
+  }
+  .sheet-foot::before {
+    content: "Sheet " counter(sheet) " of " var(--total) " · ";
+  }
+  .sheet-foot::after {
+    content: " · Uncontrolled when printed";
+  }
+
+  /* ── Keep related content together ─────────────────────────────────*/
+  .entry,
+  .artifact,
+  .cols > div,
+  .kv > dt,
+  .kv > dd,
+  tr,
+  .signoff { break-inside: avoid; }
+
+  thead { display: table-header-group; }   /* repeat headers across pages */
+  tfoot { display: table-footer-group; }
+
+  /* ── Redaction must print as a solid bar ───────────────────────────
+     Without print-color-adjust the browser drops the background and the
+     bar prints as empty space, which reads as a layout bug rather than as
+     a redaction. */
+  .redact-bar {
+    background: var(--redact) !important;
+    border: 0.4pt solid var(--redact);
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .redact-note { max-inline-size: none; opacity: 1; overflow: visible; }
+  .redact { color: var(--ink-faint); }
+
+  .chip {
+    border: 0.4pt solid currentColor;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .chip .vec { max-inline-size: none; opacity: 1; overflow: visible; }
+
+  .status,
+  .status::before,
+  .sev,
+  .cta-primary {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .cta-primary {
+    background: transparent;
+    color: var(--ink);
+    border: 0.8pt solid var(--ink);
+    padding: 3mm 5mm;
+  }
+
+  /* ── Links ─────────────────────────────────────────────────────────
+     Expand external destinations as footnotes. In-page anchors are
+     meaningless on paper and are left alone. */
+  a { text-decoration: none; color: inherit; }
+
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after,
+  a[href^="tel:"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--ink-faint);
+    word-break: break-all;
+  }
+
+  a[href^="#"]::after { content: none; }
+
+  /* The CV is a relative path; expand it to something resolvable. */
+  a[href^="resources/"]::after {
+    content: " (https://shaheerkhalid.github.io/" attr(href) ")";
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--ink-faint);
+    word-break: break-all;
+  }
+
+  /* mailto:/tel: already read as their own value in the contact block —
+     repeating the href there would print the address twice. */
+  .cta-secondary a[href^="mailto:"]::after,
+  .cta-secondary a[href^="tel:"]::after,
+  .kv a[href^="mailto:"]::after,
+  .kv a[href^="tel:"]::after { content: none; }
+
+  /* ── Layout simplifications ────────────────────────────────────────*/
+  .cols { grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  .control { grid-template-columns: 1fr 1fr; gap: 8mm; }
+  .cta-secondary { grid-template-columns: repeat(2, 1fr); }
+  .artifact-shot { display: none; }        /* empty placeholder boxes */
+}
