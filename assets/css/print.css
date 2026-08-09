@@ -21,7 +21,18 @@
     line-height: 1.45;
   }
 
-  /* ── Remove screen-only furniture ──────────────────────────────────*/
+  /* ── Remove screen-only furniture ──────────────────────────────────
+     .doc-foot is the screen's fixed rail and has no print equivalent.
+
+     A repeating per-page footer was attempted and abandoned. Chrome does
+     repeat position:fixed boxes on every printed page, but positions them
+     against the page content box, where they land on top of flowed text;
+     nudging one into the margin band makes Chrome render it at the top of
+     the page instead. @page margin boxes (@bottom-center and friends),
+     which exist precisely for this, are still unimplemented in Chrome and
+     Safari. So the footer is per sheet, not per page: it prints at the end
+     of each sheet, and the two sheets that run to a second page carry it
+     on the second. Every sheet is accounted for; not every page is. */
   .rail,
   .doc-foot,
   .skip,
@@ -178,6 +189,10 @@
     font-size: 7pt;
     color: var(--ink-faint);
     word-break: break-all;
+    /* URL paths are case-sensitive. Without this the uppercase tracking on
+       .cta-tertiary and .kv rewrites the footnote into a broken address. */
+    text-transform: none;
+    letter-spacing: 0;
   }
 
   a[href^="#"]::after { content: none; }
@@ -189,6 +204,8 @@
     font-size: 7pt;
     color: var(--ink-faint);
     word-break: break-all;
+    text-transform: none;
+    letter-spacing: 0;
   }
 
   /* mailto:/tel: already read as their own value in the contact block —
