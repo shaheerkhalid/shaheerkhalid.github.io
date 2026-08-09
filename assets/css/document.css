@@ -2,7 +2,7 @@
    Total sheet count lives here, once. Renumbering the document is a
    one-value change; the footer rail and TOC both read it. */
 
-:root { --total: "8"; }
+:root { --total: "10"; }
 
 /* ═══ Cover ═══════════════════════════════════════════════════════════
    One viewport. Classification, name, document-control block, contents. */
@@ -624,6 +624,19 @@ kbd {
   flex-wrap: wrap;
   gap: var(--space-2);
 }
+
+/* ═══ Unfilled fields ═════════════════════════════════════════════════
+   A placeholder must never be mistakeable for content. These read as
+   empty fields on a form: faint, mono, dashed. They are deliberately
+   visible rather than hidden — the gap is the point until it is filled. */
+.todo {
+  font-family: var(--font-mono);
+  font-size: var(--t-2xs);
+  color: var(--ink-faint);
+  border-block-end: var(--hair) dashed var(--ink-faint);
+  font-weight: 400;
+}
+h3.todo { letter-spacing: var(--track-wide); text-transform: uppercase; }
 
 /* ═══ Research artifacts ══════════════════════════════════════════════*/
 .artifact {
