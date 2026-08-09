@@ -53,9 +53,27 @@ shadows) is gone. Page-ness now exists only in print, where it is real.
 ├── resources/
 │   ├── Shaheer_Khalid_CV.pdf
 │   └── sample-finding.pdf     # TODO(shaheer)
+├── scripts/
+│   └── build-instrumentation.mjs   # renders sheet 09 at build time
+├── .github/workflows/
+│   └── instrumentation.yml    # weekly refresh, commits the result
 ├── og.png
 └── og-template.html           # source for regenerating og.png
 ```
+
+**Live data is fetched at build time, never in the browser.** Sheet 09 shows a
+GitHub contribution calendar and Anthropic API usage. Both sources require a
+credential — GitHub's calendar is GraphQL-only, and the usage report is an Admin
+API endpoint — and a credential in a public static page is a published
+credential. `scripts/build-instrumentation.mjs` runs in CI with repository
+secrets and writes the numbers into `index.html` between
+`<!-- instrumentation:*:start -->` markers.
+
+The shipped page therefore makes **no request for this data at all**, which is
+what keeps §2's zero-third-party rule intact, leaves the CSP unchanged, and
+means the sheet works with JS disabled and prints. A missing credential renders
+an explicit "not available" — never a zero, which would read as a measurement.
+Any future live data follows the same pattern.
 
 CSS load order is `tokens → base → document → print`. Keep it that way; do not introduce a fifth
 stylesheet without asking.

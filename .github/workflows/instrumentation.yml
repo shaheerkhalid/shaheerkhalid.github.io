@@ -1,0 +1,71 @@
+# Refreshes sheet 09 from live sources and commits the result.
+#
+# The page itself never calls these APIs: the GitHub contribution calendar is
+# GraphQL-only and the Anthropic usage report is an Admin API endpoint, so both
+# need a credential — and a credential in a public static page is a published
+# credential. Fetching here, with secrets, keeps the shipped page free of both
+# the credential and the request.
+#
+# Secrets:
+#   GH_ACTIVITY_TOKEN    optional. A PAT with read:user. Falls back to the
+#                        job's GITHUB_TOKEN, which can read a public
+#                        contribution calendar but not private contributions.
+#   ANTHROPIC_ADMIN_KEY  optional. Omit and the model-usage block renders an
+#                        explicit "not available" rather than a fabricated zero.
+
+name: instrumentation
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"   # Mondays, 04:17 UTC — off the hour to dodge GitHub's peak
+  workflow_dispatch:        # so a run can be forced after adding a secret
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instrumentation
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Render sheet 09
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACTIVITY_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_LOGIN: ${{ github.repository_owner }}
+          ANTHROPIC_ADMIN_KEY: ${{ secrets.ANTHROPIC_ADMIN_KEY }}
+        run: node scripts/build-instrumentation.mjs
+
+      # Guard against a partial fetch quietly wiping the sheet: if the run
+      # produced neither a heatmap nor a usage figure, fail instead of
+      # committing an empty section over good data.
+      - name: Verify output
+        run: |
+          if ! grep -q 'class="heatmap"' index.html; then
+            echo "::error::no heatmap rendered — refusing to commit"
+            exit 1
+          fi
+          if grep -qE 'gh[pousr]_[A-Za-z0-9]{16,}|sk-ant-' index.html; then
+            echo "::error::credential-shaped string in index.html — refusing to commit"
+            exit 1
+          fi
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- index.html; then
+            echo "no change"
+            exit 0
+          fi
+          git add index.html
+          git commit -m "instrumentation: refresh sheet 09"
+          git push
