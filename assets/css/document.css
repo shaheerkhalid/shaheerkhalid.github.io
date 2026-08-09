@@ -383,6 +383,10 @@
 }
 .tbl td:first-child { color: var(--ink); }
 .tbl .num { font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+/* Revision numbers are an index, not a measurement — keep the column to
+   the width of its content instead of letting it claim a third of the row. */
+.tbl--rev th:first-child,
+.tbl--rev td:first-child { inline-size: 5ch; text-align: left; }
 .tbl a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ink-faint); }
 .tbl a:hover { text-decoration-color: var(--ink); }
 
