@@ -18,9 +18,17 @@
 
   var active = -1;
 
+  /* Where the keyboard thinks it is. The observer only catches up after the
+     scroll settles, so reading `active` on each keypress makes rapid j/j/j
+     re-target the same sheet. The cursor advances immediately and hands
+     control back to the observer once scrolling stops. */
+  var cursor = 0;
+  var navigating = 0;
+
   function setActive(i) {
     if (i === active) return;
     active = i;
+    if (!navigating) cursor = i;
 
     links.forEach(function (a) {
       var on = a.getAttribute("href") === "#" + sheets[i].id;
@@ -82,9 +90,11 @@
   var closeBtn = document.getElementById("shortcuts-close");
   var lastG = 0;
 
-  function go(i) {
-    var target = sheets[Math.min(sheets.length - 1, Math.max(0, i))];
-    if (target) target.scrollIntoView({ block: "start" });
+  function go(delta) {
+    cursor = Math.min(sheets.length - 1, Math.max(0, cursor + delta));
+    sheets[cursor].scrollIntoView({ block: "start" });
+    clearTimeout(navigating);
+    navigating = setTimeout(function () { navigating = 0; cursor = active; }, 700);
   }
 
   function openHelp() {
@@ -116,8 +126,8 @@
     if (dialog && dialog.open && e.key !== "?") return;
 
     switch (e.key) {
-      case "j": case "ArrowDown":  go(active + 1); e.preventDefault(); break;
-      case "k": case "ArrowUp":    go(active - 1); e.preventDefault(); break;
+      case "j": case "ArrowDown":  go(+1); e.preventDefault(); break;
+      case "k": case "ArrowUp":    go(-1); e.preventDefault(); break;
       case "p": window.print(); e.preventDefault(); break;
       case "m": if (window.SKMode) window.SKMode.toggle(); e.preventDefault(); break;
       case "?": openHelp(); e.preventDefault(); break;
@@ -125,6 +135,7 @@
         /* gg — two presses inside 500ms returns to the cover */
         if (Date.now() - lastG < 500) {
           window.scrollTo({ top: 0 });
+          cursor = 0;
           lastG = 0;
         } else {
           lastG = Date.now();
