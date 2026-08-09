@@ -126,13 +126,13 @@ Footer: `Cover` · `Uncontrolled when printed` · `SK / CP-01`
 *Sub-label: Client names withheld under NDA*
 
 ### Core banking mobile application — Financial · PK & ME
-Meta: `Grey box` · `[REDACTED: tier-1 retail bank]` · `2M+ end users`
+Meta: `Grey box` · `[client identity — withheld]` · `2M+ end users`
 - Discovered **amount manipulation and authentication bypass** (**CVSS 8.1**) enabling unauthorised fund transfers
 - Bypassed SSL pinning, root detection and runtime integrity checks using custom Frida scripts
 - Led the remediation workshop with the client's DevSecOps team
 
 ### National vaccine portal — Healthcare · PK & ME
-Meta: `OWASP Top 10 & MASVS L2` · `[REDACTED: national health programme]`
+Meta: `OWASP Top 10 & MASVS L2` · `[client identity — withheld]`
 - Uncovered **4 high-severity findings**, including stored XSS and broken access control
 - Mobile assessment identified insecure data storage and weak crypto implementations
 
@@ -147,17 +147,24 @@ Meta: `Infrastructure, SAST and DAST across globally distributed facilities`
 - Delivered a unified remediation roadmap consumed by globally distributed engineering teams
 
 ### Tier-1 e-commerce platforms — E-commerce · PK & ME
-Meta: `Web & API` · `[REDACTED: regional retail group]`
+Meta: `Web & API` · `[client identity — withheld]`
 - Identified **IDOR and account takeover**, bypassing WAF and bot protection
 - Developer-focused remediation guidance reduced recurrence on subsequent retests
 
 Closing pen note: `— all findings retested. closed.`
 
-> **Redaction note.** The three bracketed strings above were present in the shipped DOM inside
-> `<button class="redact">` elements, readable by anyone using View Source. Under the rebuild they
-> are removed from the markup entirely. They are recorded here, in a non-deployed file, only so the
-> content diff can prove nothing else changed. They are generic sector descriptors, not client
-> names — no client name has ever appeared in the markup.
+> **Redaction note.** Three descriptor strings previously sat in the shipped DOM inside
+> `<button class="redact">` elements, readable by anyone using View Source. The rebuild removes them
+> from the markup entirely.
+>
+> They are **not reproduced in this file either.** GitHub Pages serves any static file in the repo
+> root, so a working note committed here is as public as the page itself — recording them to prove a
+> diff would have re-published exactly what the redaction exists to withhold. They survive only in
+> `_baseline/index.html`, which is gitignored and never leaves the working copy, and in the pre-rebuild
+> commit `b75496d`.
+>
+> For the record: they were generic sector descriptors, not client names. No client name has ever
+> appeared in this site's markup.
 
 ---
 
