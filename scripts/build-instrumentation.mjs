@@ -33,10 +33,37 @@ const ADMIN_KEY = process.env.ANTHROPIC_ADMIN_KEY;
 const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
 const num = (n) => n.toLocaleString("en-US");
 
+/*
+ * Failure reporting is deliberately two-channel.
+ *
+ * `reason` is rendered into a PUBLIC page, so it is a short phrase written for
+ * a reader — never an upstream response body. Echoing the API's own error JSON
+ * onto the page leaks request IDs and internal error shapes and reads as a
+ * broken build rather than a stated absence.
+ *
+ * `detail` goes to CI stdout only, where it is useful for debugging and is
+ * already access-controlled. Secrets are masked by Actions in that stream, but
+ * nothing here passes a credential to either channel regardless.
+ */
+function fail(source, reason, detail) {
+  if (detail) console.error(`${source}: ${reason} — ${String(detail).slice(0, 400)}`);
+  return { ok: false, reason };
+}
+
+/* An HTTP status a reader can act on, without the response body. */
+function httpReason(status) {
+  if (status === 401) return "credential rejected — an Admin API key is required";
+  if (status === 403) return "credential lacks the required scope";
+  if (status === 404) return "endpoint not found";
+  if (status === 429) return "rate limited";
+  if (status >= 500) return "upstream unavailable";
+  return `request failed (HTTP ${status})`;
+}
+
 /* ── GitHub ───────────────────────────────────────────────────────────── */
 
 async function github() {
-  if (!GH_TOKEN) return { ok: false, reason: "GITHUB_TOKEN not set" };
+  if (!GH_TOKEN) return { ok: false, reason: "no credential configured" };
 
   const query = `
     query($login: String!) {
@@ -64,12 +91,12 @@ async function github() {
     body: JSON.stringify({ query, variables: { login: LOGIN } }),
   });
 
-  if (!res.ok) return { ok: false, reason: `GitHub HTTP ${res.status}` };
+  if (!res.ok) return fail("GitHub", `HTTP ${res.status}`, await res.text().catch(() => ""));
   const json = await res.json();
-  if (json.errors) return { ok: false, reason: json.errors[0]?.message || "GraphQL error" };
+  if (json.errors) return fail("GitHub", "query rejected", JSON.stringify(json.errors));
 
   const c = json.data?.user?.contributionsCollection;
-  if (!c) return { ok: false, reason: `no such user: ${LOGIN}` };
+  if (!c) return fail("GitHub", "no contribution data returned", `login=${LOGIN}`);
 
   return {
     ok: true,
@@ -85,7 +112,7 @@ async function github() {
 /* ── Anthropic Admin API ──────────────────────────────────────────────── */
 
 async function anthropic() {
-  if (!ADMIN_KEY) return { ok: false, reason: "ANTHROPIC_ADMIN_KEY not set" };
+  if (!ADMIN_KEY) return { ok: false, reason: "no credential configured" };
 
   const since = new Date(Date.now() - 30 * 864e5).toISOString().replace(/\.\d+Z$/, "Z");
   const url = new URL("https://api.anthropic.com/v1/organizations/usage_report/messages");
@@ -109,8 +136,7 @@ async function anthropic() {
       headers: { ...auth, "anthropic-version": "2023-06-01" },
     });
     if (!res.ok) {
-      const body = await res.text().catch(() => "");
-      return { ok: false, reason: `Anthropic HTTP ${res.status}${body ? `: ${body.slice(0, 120)}` : ""}` };
+      return fail("Anthropic", httpReason(res.status), await res.text().catch(() => ""));
     }
     const json = await res.json();
     for (const bucket of json.data || []) {
