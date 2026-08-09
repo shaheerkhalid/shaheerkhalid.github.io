@@ -356,7 +356,9 @@
   inset-inline-start: 0;
   color: var(--ink-faint);
 }
-.entry li strong { color: var(--ink); }
+/* :not(.sev) so a severity assertion is not overridden by the generic
+   emphasis rule — .entry li strong (0,1,2) would otherwise outrank .sev. */
+.entry li strong:not(.sev) { color: var(--ink); }
 
 /* ── Tables ──────────────────────────────────────────────────────────*/
 .tbl { font-size: var(--t-xs); }
